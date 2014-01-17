@@ -13,8 +13,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+
+    self.connectViewController = [[OACSConnectViewController alloc] initWithNibName:nil bundle:NULL];
+    [self.window addSubview:self.connectViewController.view];
+
     [self.window makeKeyAndVisible];
     return YES;
 }

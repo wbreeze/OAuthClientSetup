@@ -19,6 +19,7 @@
 		68C41A581888CEC5006F3235 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C41A401888CEC5006F3235 /* UIKit.framework */; };
 		68C41A601888CEC5006F3235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A5E1888CEC5006F3235 /* InfoPlist.strings */; };
 		68C41A621888CEC5006F3235 /* OAuthClientSetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */; };
+		68C41A6D1888D05E006F3235 /* OACSConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		68C41A5D1888CEC5006F3235 /* OAuthClientSetupTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OAuthClientSetupTests-Info.plist"; sourceTree = "<group>"; };
 		68C41A5F1888CEC5006F3235 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthClientSetupTests.m; sourceTree = "<group>"; };
+		68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSConnectViewController.h; sourceTree = "<group>"; };
+		68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSConnectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 			children = (
 				68C41A4B1888CEC5006F3235 /* OACSAppDelegate.h */,
 				68C41A4C1888CEC5006F3235 /* OACSAppDelegate.m */,
+				68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */,
+				68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */,
 				68C41A4E1888CEC5006F3235 /* Images.xcassets */,
 				68C41A431888CEC5006F3235 /* Supporting Files */,
 			);
@@ -241,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C41A4D1888CEC5006F3235 /* OACSAppDelegate.m in Sources */,
+				68C41A6D1888D05E006F3235 /* OACSConnectViewController.m in Sources */,
 				68C41A491888CEC5006F3235 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
