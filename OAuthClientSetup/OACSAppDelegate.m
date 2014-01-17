@@ -15,7 +15,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     self.connectViewController = [[OACSConnectViewController alloc] initWithNibName:nil bundle:NULL];
-    [self.window addSubview:self.connectViewController.view];
+    [self.window setRootViewController:self.connectViewController];
 
     [self.window makeKeyAndVisible];
     return YES;
