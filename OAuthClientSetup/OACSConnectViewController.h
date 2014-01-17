@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OACSConnectViewController : UIViewController
+- (IBAction)sendGrantRequest;
+- (IBAction)resignAuthentication;
 @end

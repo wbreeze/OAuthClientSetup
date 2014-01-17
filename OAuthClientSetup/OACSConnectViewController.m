@@ -9,25 +9,50 @@
 #import "OACSConnectViewController.h"
 
 @interface OACSConnectViewController ()
-@property (strong, nonatomic) UILabel *myLabel;
+@property (atomic) BOOL isAuthenticated;
+@property (atomic) BOOL isConfigured;
 @end
 
 @implementation OACSConnectViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.isConfigured = YES;
+        self.isAuthenticated = NO;
+    }
+    return self;
+}
+
+- (BOOL)doesHaveAuthentication
+{
+    return self.isAuthenticated;
+}
+
+- (BOOL)doesHaveConfiguration
+{
+    return self.isConfigured;
+}
+
+- (void)loadView
+{
+    UIView *configureView = nil;
+    if ([self doesHaveAuthentication])
+    {
+        configureView = [[NSBundle mainBundle] loadNibNamed:@"AuthorizedView" owner:self options:nil][0];
+    }
+    else if ([self doesHaveConfiguration]) {
+        configureView = [[NSBundle mainBundle] loadNibNamed:@"ConnectView" owner:self options:nil][0];
+    }
+    else {
+        configureView = [[NSBundle mainBundle] loadNibNamed:@"ConfigureView" owner:self options:nil][0];
+    }
+    self.view = configureView;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    CGRect labelFrame = CGRectMake(0.0f,
-                                   0.0f,
-                                   220.0f,
-                                   90.0f);
-    self.myLabel = [[UILabel alloc] initWithFrame:labelFrame];
-    self.myLabel.numberOfLines = 5;
-    self.myLabel.text = @"Edit file, 'oauth_setup_sample.props', save as 'oauth_setup.props', restart the application.";
-    self.myLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-    self.myLabel.center = self.view.center;
-    [self.view addSubview:self.myLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,5 +60,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)sendGrantRequest
+{
+    self.isAuthenticated = YES;
+    [self loadView];
+}
+
+- (IBAction)resignAuthentication
+{
+    self.isAuthenticated = NO;
+    [self loadView];
+}
+
 
 @end
