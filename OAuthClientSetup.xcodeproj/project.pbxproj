@@ -20,9 +20,9 @@
 		68C41A601888CEC5006F3235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A5E1888CEC5006F3235 /* InfoPlist.strings */; };
 		68C41A621888CEC5006F3235 /* OAuthClientSetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */; };
 		68C41A6D1888D05E006F3235 /* OACSConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */; };
-		68C41A6F1889BA42006F3235 /* ConnectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A6E1889BA42006F3235 /* ConnectView.xib */; };
-		68C41A711889BC4B006F3235 /* ConfigureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A701889BC4B006F3235 /* ConfigureView.xib */; };
-		68C41A731889BE42006F3235 /* AuthorizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A721889BE42006F3235 /* AuthorizedView.xib */; };
+		68C41A6F1889BA42006F3235 /* ConnectView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A6E1889BA42006F3235 /* ConnectView-iPhone.xib */; };
+		68C41A711889BC4B006F3235 /* ConfigureView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A701889BC4B006F3235 /* ConfigureView-iPhone.xib */; };
+		68C41A731889BE42006F3235 /* AuthorizedView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A721889BE42006F3235 /* AuthorizedView-iPhone.xib */; };
 		68C41A751889F1EA006F3235 /* oauth_setup_sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A741889F1EA006F3235 /* oauth_setup_sample.plist */; };
 		68C41A77188A0385006F3235 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A76188A0385006F3235 /* oauth_setup.plist */; };
 		68C41A79188A0726006F3235 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A78188A0726006F3235 /* .gitignore */; };
@@ -57,9 +57,9 @@
 		68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthClientSetupTests.m; sourceTree = "<group>"; };
 		68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSConnectViewController.h; sourceTree = "<group>"; };
 		68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSConnectViewController.m; sourceTree = "<group>"; };
-		68C41A6E1889BA42006F3235 /* ConnectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectView.xib; sourceTree = "<group>"; };
-		68C41A701889BC4B006F3235 /* ConfigureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureView.xib; sourceTree = "<group>"; };
-		68C41A721889BE42006F3235 /* AuthorizedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorizedView.xib; sourceTree = "<group>"; };
+		68C41A6E1889BA42006F3235 /* ConnectView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConnectView-iPhone.xib"; sourceTree = "<group>"; };
+		68C41A701889BC4B006F3235 /* ConfigureView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConfigureView-iPhone.xib"; sourceTree = "<group>"; };
+		68C41A721889BE42006F3235 /* AuthorizedView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AuthorizedView-iPhone.xib"; sourceTree = "<group>"; };
 		68C41A741889F1EA006F3235 /* oauth_setup_sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_sample.plist; sourceTree = "<group>"; };
 		68C41A76188A0385006F3235 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
 		68C41A78188A0726006F3235 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
@@ -132,9 +132,9 @@
 				68C41A4C1888CEC5006F3235 /* OACSAppDelegate.m */,
 				68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */,
 				68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */,
-				68C41A701889BC4B006F3235 /* ConfigureView.xib */,
-				68C41A721889BE42006F3235 /* AuthorizedView.xib */,
-				68C41A6E1889BA42006F3235 /* ConnectView.xib */,
+				68C41A701889BC4B006F3235 /* ConfigureView-iPhone.xib */,
+				68C41A721889BE42006F3235 /* AuthorizedView-iPhone.xib */,
+				68C41A6E1889BA42006F3235 /* ConnectView-iPhone.xib */,
 				68C41A4E1888CEC5006F3235 /* Images.xcassets */,
 				68C41A431888CEC5006F3235 /* Supporting Files */,
 			);
@@ -248,13 +248,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C41A79188A0726006F3235 /* .gitignore in Resources */,
-				68C41A6F1889BA42006F3235 /* ConnectView.xib in Resources */,
+				68C41A6F1889BA42006F3235 /* ConnectView-iPhone.xib in Resources */,
 				68C41A77188A0385006F3235 /* oauth_setup.plist in Resources */,
 				68C41A471888CEC5006F3235 /* InfoPlist.strings in Resources */,
 				68C41A751889F1EA006F3235 /* oauth_setup_sample.plist in Resources */,
-				68C41A731889BE42006F3235 /* AuthorizedView.xib in Resources */,
+				68C41A731889BE42006F3235 /* AuthorizedView-iPhone.xib in Resources */,
 				68C41A4F1888CEC5006F3235 /* Images.xcassets in Resources */,
-				68C41A711889BC4B006F3235 /* ConfigureView.xib in Resources */,
+				68C41A711889BC4B006F3235 /* ConfigureView-iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
