@@ -1,13 +1,16 @@
-#import "../../Pods/tunup_js/tuneup.js"
+#import "../../../../Pods/tuneup_js/tuneup.js"
 
 test("authorize and reset", function(target, app) {
-     var target = UIATarget.localTarget();
 
-     target.frontMostApp().mainWindow().scrollViews()[0].textFields()[0].tap();
-     target.frontMostApp().keyboard().typeString("user@example.com");
-     target.frontMostApp().mainWindow().scrollViews()[0].textFields()[0].tap();
-     target.frontMostApp().keyboard().typeString("doorkeeper");
-     target.frontMostApp().mainWindow().scrollViews()[0].buttons()["Connect"].tap();
-     target.frontMostApp().mainWindow().buttons()["Reset"].tap();
-     });
+     app.mainWindow().scrollViews()[0].textFields()[0].tap();
+     app.keyboard().typeString("user@example.com");
 
+     app.mainWindow().scrollViews()[0].secureTextFields()[0].tap();
+     app.keyboard().typeString("doorkeeper");
+
+     app.mainWindow().scrollViews()[0].buttons()["Connect"].tap();
+
+     app.mainWindow().logElementTree();
+
+     app.mainWindow().buttons()["Reset"].tap();
+});

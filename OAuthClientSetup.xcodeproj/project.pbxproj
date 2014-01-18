@@ -66,9 +66,9 @@
 		68C41A741889F1EA006F3235 /* oauth_setup_sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_sample.plist; sourceTree = "<group>"; };
 		68C41A76188A0385006F3235 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
 		68C41A78188A0726006F3235 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
-		68C41A7C188A25E1006F3235 /* authorize_and_reset.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = authorize_and_reset.js; path = ../../OAuthClientSetupTests/scripts/authorize_and_reset.js; sourceTree = "<group>"; };
 		68C41A7D188A29AF006F3235 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		68C41A88188A29AF006F3235 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		68C41A90188A2CD8006F3235 /* authorize_and_reset.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = authorize_and_reset.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,57 +191,25 @@
 		68C41A7E188A29AF006F3235 /* integration */ = {
 			isa = PBXGroup;
 			children = (
-				68C41A7F188A29AF006F3235 /* coffeescript */,
-				68C41A84188A29AF006F3235 /* javascript */,
-				68C41A86188A29AF006F3235 /* tmp */,
+				68C41A8E188A2CD8006F3235 /* javascript */,
 			);
 			path = integration;
 			sourceTree = "<group>";
 		};
-		68C41A7F188A29AF006F3235 /* coffeescript */ = {
+		68C41A8E188A2CD8006F3235 /* javascript */ = {
 			isa = PBXGroup;
 			children = (
-				68C41A80188A29AF006F3235 /* ipad */,
-				68C41A82188A29AF006F3235 /* iphone */,
-			);
-			path = coffeescript;
-			sourceTree = "<group>";
-		};
-		68C41A80188A29AF006F3235 /* ipad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ipad;
-			sourceTree = "<group>";
-		};
-		68C41A82188A29AF006F3235 /* iphone */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iphone;
-			sourceTree = "<group>";
-		};
-		68C41A84188A29AF006F3235 /* javascript */ = {
-			isa = PBXGroup;
-			children = (
-				68C41A7C188A25E1006F3235 /* authorize_and_reset.js */,
+				68C41A8F188A2CD8006F3235 /* iphone */,
 			);
 			path = javascript;
 			sourceTree = "<group>";
 		};
-		68C41A86188A29AF006F3235 /* tmp */ = {
+		68C41A8F188A2CD8006F3235 /* iphone */ = {
 			isa = PBXGroup;
 			children = (
-				68C41A87188A29AF006F3235 /* results */,
+				68C41A90188A2CD8006F3235 /* authorize_and_reset.js */,
 			);
-			path = tmp;
-			sourceTree = "<group>";
-		};
-		68C41A87188A29AF006F3235 /* results */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = results;
+			path = iphone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
