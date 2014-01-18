@@ -3,13 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>callback_url</key>
-	<string>http://doorkeeper-client.herokuapp.com/users/auth/doorkeeper/callback
-
-http://doorkeeper-client.herokuapp.com/users/auth/doorkeeper/callback
-
-http://doorkeeper-client.herokuapp.com/users/auth/doorkeeper/callback
-
-</string>
+	<string>http://doorkeeper-client.herokuapp.com/users/auth/doorkeeper/callback</string>
 	<key>token_url</key>
 	<string>https://doorkeeper-provider.herokuapp.com/oauth/token</string>
 	<key>auth_url</key>
