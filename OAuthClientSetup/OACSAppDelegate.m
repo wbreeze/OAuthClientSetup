@@ -30,15 +30,14 @@
 - (NSDictionary *)readDictionaryFromConfig: (NSString *)configPath
 {
     NSString *errorDesc = nil;
-    NSPropertyListFormat format;
     NSData *configXML = [[NSFileManager defaultManager] contentsAtPath:configPath];
     NSDictionary *config = (NSDictionary *)[NSPropertyListSerialization
                                             propertyListFromData:configXML
                                             mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                            format:&format
+                                            format:NULL
                                             errorDescription:&errorDesc];
     if (!config) {
-        NSLog(@"Error reading config: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading config is '%@'", errorDesc);
     }
     return config;
 }
