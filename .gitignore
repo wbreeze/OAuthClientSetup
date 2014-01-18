@@ -33,3 +33,5 @@ Pods
 bin
 # bwoken results
 integration/tmp/
+# Instruments trace files
+Instruments.trace/
