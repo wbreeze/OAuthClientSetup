@@ -29,3 +29,5 @@ Pods
 # AppCode specific files
 .idea/
 *.iml
+# bundler binstubs
+bin
