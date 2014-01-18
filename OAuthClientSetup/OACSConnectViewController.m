@@ -11,17 +11,40 @@
 @interface OACSConnectViewController ()
 @property (atomic) BOOL isAuthenticated;
 @property (atomic) BOOL isConfigured;
+@property (atomic) NSURL *auth_url;
+@property (atomic) NSURL *token_url;
+@property (atomic) NSURL *callback_url;
+@property (atomic) NSString *client_key;
+@property (atomic) NSString *client_secret;
 @end
 
 @implementation OACSConnectViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)initWithConfiguration: (NSDictionary *)configData {
+    self = [super init];
     if (self) {
         self.isConfigured = NO;
+        if (configData) {
+            self.isConfigured = [self initConfigurationFrom:configData];
+        }
         self.isAuthenticated = NO;
     }
     return self;
+}
+
+- (BOOL)initConfigurationFrom: (NSDictionary *)config {
+        self.auth_url = [self urlFor:[config objectForKey:@"auth_url"]];
+        self.token_url = [self urlFor:[config objectForKey:@"token_url"]];
+        self.callback_url = [self urlFor:[config objectForKey:@"callback_url"]];
+        self.client_key = [config objectForKey:@"client_key"];
+        self.client_secret = [config objectForKey:@"client_secret"];
+
+    return self.auth_url && self.token_url && self.callback_url && self.client_key && self.client_secret;
+}
+
+- (NSURL *)urlFor: (NSString *)urlString
+{
+    return urlString ? [[NSURL alloc] initFileURLWithPath:urlString] : nil;
 }
 
 - (BOOL)doesHaveAuthentication

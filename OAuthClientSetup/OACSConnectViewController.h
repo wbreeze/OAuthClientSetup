@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OACSConnectViewController : UIViewController
+- (id)initWithConfiguration: (NSDictionary *)config;
 - (IBAction)sendGrantRequest;
 - (IBAction)resignAuthentication;
 @end

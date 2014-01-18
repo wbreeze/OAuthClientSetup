@@ -14,11 +14,33 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.connectViewController = [[OACSConnectViewController alloc] initWithNibName:nil bundle:NULL];
+    NSDictionary *config = nil;
+    NSString *configPath = [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
+    if (configPath)
+    {
+        config = [self readDictionaryFromConfig:configPath];
+    }
+    self.connectViewController = [[OACSConnectViewController alloc] initWithConfiguration:config];
     [self.window setRootViewController:self.connectViewController];
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (NSDictionary *)readDictionaryFromConfig: (NSString *)configPath
+{
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSData *configXML = [[NSFileManager defaultManager] contentsAtPath:configPath];
+    NSDictionary *config = (NSDictionary *)[NSPropertyListSerialization
+                                            propertyListFromData:configXML
+                                            mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                            format:&format
+                                            errorDescription:&errorDesc];
+    if (!config) {
+        NSLog(@"Error reading config: %@, format: %d", errorDesc, format);
+    }
+    return config;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
