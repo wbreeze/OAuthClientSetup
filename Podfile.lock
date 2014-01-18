@@ -1,0 +1,10 @@
+PODS:
+  - tuneup_js (0.0.1)
+
+DEPENDENCIES:
+  - tuneup_js
+
+SPEC CHECKSUMS:
+  tuneup_js: d01b25914f2e4ae2cbb7ec1d22790b2d88078474
+
+COCOAPODS: 0.29.0

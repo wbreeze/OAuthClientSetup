@@ -31,3 +31,5 @@ Pods
 *.iml
 # bundler binstubs
 bin
+# bwoken results
+integration/tmp/
