@@ -12,6 +12,13 @@ function onConnectView() {
     });
 }
 
+function onAuthorizedView() {
+  assertWindow({
+    staticTexts: [ { label: /^You are authorized/ } ],
+    buttons: [ { name: "Reset" } ]
+  });
+}
+
 test("authorize and reset", function(target, app) {
      onConnectView();
 
@@ -23,7 +30,7 @@ test("authorize and reset", function(target, app) {
 
      app.mainWindow().scrollViews()[0].buttons()["Connect"].tap();
 
-     app.mainWindow().logElementTree();
+     onAuthorizedView();
 
      app.mainWindow().buttons()["Reset"].tap();
 });
