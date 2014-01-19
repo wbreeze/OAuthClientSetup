@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OACSConnectViewController : UIViewController
-- (id)initWithConfiguration: (NSDictionary *)config;
+@interface OACSConnectViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic) IBOutlet UITextField *userName;
+@property (nonatomic) IBOutlet UITextField *password;
+@property (nonatomic) IBOutlet UILabel *errorLabel;
+@property (nonatomic) IBOutlet UIButton *connectButton;
+@property (nonatomic) IBOutlet UIActivityIndicatorView *workinOnIt;
+
 - (IBAction)sendGrantRequest;
-- (IBAction)resignAuthentication;
+
 @end

@@ -7,75 +7,23 @@
 //
 
 #import "OACSConnectViewController.h"
+#import "OACSConfigureViewController.h"
+#import "AFOAuth2Client.h"
+#import "OACSAppDelegate.h"
 
 @interface OACSConnectViewController ()
-@property (atomic) BOOL isAuthenticated;
-@property (atomic) BOOL isConfigured;
-@property (atomic) NSURL *auth_url;
-@property (atomic) NSURL *token_url;
-@property (atomic) NSURL *callback_url;
-@property (atomic) NSString *client_key;
-@property (atomic) NSString *client_secret;
+    @property (weak, nonatomic) UITextField *liveTextField;
 @end
 
 @implementation OACSConnectViewController
 
-- (id)initWithConfiguration: (NSDictionary *)configData {
-    self = [super init];
-    if (self) {
-        self.isConfigured = NO;
-        if (configData) {
-            self.isConfigured = [self initConfigurationFrom:configData];
-        }
-        self.isAuthenticated = NO;
-    }
-    return self;
-}
-
-- (BOOL)initConfigurationFrom: (NSDictionary *)config {
-        self.auth_url = [self urlFor:[config objectForKey:@"auth_url"]];
-        self.token_url = [self urlFor:[config objectForKey:@"token_url"]];
-        self.callback_url = [self urlFor:[config objectForKey:@"callback_url"]];
-        self.client_key = [config objectForKey:@"client_key"];
-        self.client_secret = [config objectForKey:@"client_secret"];
-
-    return self.auth_url && self.token_url && self.callback_url && self.client_key && self.client_secret;
-}
-
-- (NSURL *)urlFor: (NSString *)urlString
-{
-    return urlString ? [[NSURL alloc] initFileURLWithPath:urlString] : nil;
-}
-
-- (BOOL)doesHaveAuthentication
-{
-    return self.isAuthenticated;
-}
-
-- (BOOL)doesHaveConfiguration
-{
-    return self.isConfigured;
-}
-
-- (void)loadView
-{
-    UIView *configureView = nil;
-    if ([self doesHaveAuthentication])
-    {
-        configureView = [[NSBundle mainBundle] loadNibNamed:@"AuthorizedView" owner:self options:nil][0];
-    }
-    else if ([self doesHaveConfiguration]) {
-        configureView = [[NSBundle mainBundle] loadNibNamed:@"ConnectView" owner:self options:nil][0];
-    }
-    else {
-        configureView = [[NSBundle mainBundle] loadNibNamed:@"ConfigureView" owner:self options:nil][0];
-    }
-    self.view = configureView;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.errorLabel setHidden:YES];
+    [self.password setDelegate:self];
+    [self.userName setDelegate:self];
+    self.liveTextField = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,15 +34,59 @@
 
 - (IBAction)sendGrantRequest
 {
-    self.isAuthenticated = YES;
-    [self loadView];
+    if (self.liveTextField) {
+        [self.liveTextField resignFirstResponder];
+        self.liveTextField = nil;
+    }
+    [self.connectButton setEnabled:NO];
+    NSString *pwd = [self.password text];
+    NSString *email = [self.userName text];
+    if (pwd && 0 < pwd.length && email && 0 < email.length) {
+        [self.errorLabel setHidden:YES];
+        [self.workinOnIt startAnimating];
+//        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+//        [app.oauthClient
+//         authenticateUsingOAuthWithPath:app.auth_path
+//         username:email
+//         password:pwd
+//         scope:nil
+//         success:^(AFOAuthCredential *credential) {
+//             [AFOAuthCredential storeCredential:credential
+//                                 withIdentifier:app.oauthClient.serviceProviderIdentifier];
+//             [self.workinOnIt stopAnimating];
+//             [self.connectButton setEnabled:YES];
+        [(OACSConfigureViewController *)self.parentViewController didConnect];
+//         }
+//         failure:^(NSError *error) {
+//             NSLog(@"OAuth client authorization error: %@", error);
+//             self.errorLabel.text = @"Failed to connect using these credentials.";
+//             [self.errorLabel setHidden:NO];
+//             [self.workinOnIt stopAnimating];
+//             [self.connectButton setEnabled:YES];
+//         }];
+    }
+    else {
+        [self.errorLabel setHidden:NO];
+        self.errorLabel.text = @"Supply email and password";
+        [self.connectButton setEnabled:YES];
+    }
 }
 
-- (IBAction)resignAuthentication
-{
-    self.isAuthenticated = NO;
-    [self loadView];
+#pragma mark - UITextFieldDelegate
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    self.liveTextField = textField;
 }
 
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    self.liveTextField = nil;
+    [textField resignFirstResponder];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    self.liveTextField = nil;
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

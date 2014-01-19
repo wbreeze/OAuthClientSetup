@@ -12,19 +12,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
     NSDictionary *config = nil;
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
     if (configPath)
     {
         config = [self readDictionaryFromConfig:configPath];
     }
-    self.connectViewController = [[OACSConnectViewController alloc] initWithConfiguration:config];
-    [self.window setRootViewController:self.connectViewController];
-
-    [self.window makeKeyAndVisible];
+    if (config) {
+        [self initConfigurationFrom:config];
+    }
     return YES;
+}
+
+- (void)initConfigurationFrom: (NSDictionary *)config {
+    self.auth_path = [config objectForKey:@"auth_path"];
+    self.token_path = [config objectForKey:@"token_path"];
+    NSString *callback_str = [config objectForKey:@"callback_url"];
+    self.callback_url = callback_str ? [NSURL URLWithString:callback_str] : nil;
+    NSString * base_str = [config objectForKey:@"base_url"];
+    NSURL *base_url = base_str ? [NSURL URLWithString:base_str] : nil;
+    NSString *client_key = [config objectForKey:@"client_key"];
+    NSString *client_secret = [config objectForKey:@"client_secret"];
+    self.oauthClient = nil;
+    if (client_key && client_secret) {
+        self.oauthClient = [AFOAuth2Client clientWithBaseURL:base_url
+                                                    clientID:client_key
+                                                      secret:client_secret];
+    }
 }
 
 - (NSDictionary *)readDictionaryFromConfig: (NSString *)configPath

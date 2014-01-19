@@ -1,4 +1,4 @@
-#import "../../../../Pods/tuneup_js/tuneup.js"
+#import "../../Pods/tuneup_js/tuneup.js"
 
 function onConnectView() {
   assertWindow({
@@ -28,7 +28,7 @@ test("authorize and reset", function(target, app) {
      app.mainWindow().scrollViews()[0].secureTextFields()[0].tap();
      app.keyboard().typeString("doorkeeper");
 
-     app.mainWindow().scrollViews()[0].buttons()["Connect"].tap();
+     app.mainWindow().scrollViews()[0].buttons()["connect"].tap();
 
      onAuthorizedView();
 
