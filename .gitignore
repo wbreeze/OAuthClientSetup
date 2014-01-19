@@ -31,7 +31,5 @@ Pods
 *.iml
 # bundler binstubs
 bin
-# bwoken results
-integration/tmp/
 # Instruments trace files
 Instruments.trace/
