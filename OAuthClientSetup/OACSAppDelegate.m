@@ -10,6 +10,27 @@
 
 @implementation OACSAppDelegate
 
+/*
+ Will return nil if not configured.
+ @see (void)initConfigurationFrom: (NSDictionary *)config;
+ */
+- (AFOAuth2Client *)oauthClient {
+    if (_oauthClient == nil && self.base_url && self.client_key && self.client_secret) {
+        _oauthClient = [AFOAuth2Client clientWithBaseURL:self.base_url
+                                                clientID:self.client_key
+                                                  secret:self.client_secret];
+    }
+    return _oauthClient;
+}
+
+- (void)netStatusChanged:(AFNetworkReachabilityStatus) status {
+    self.networkAvailable = status;
+}
+
+- (void)notifyNetworkStatusObservers {
+
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSDictionary *config = nil;
@@ -21,6 +42,16 @@
     if (config) {
         [self initConfigurationFrom:config];
     }
+    if (self.httpClient) {
+        self.networkAvailable = [self.httpClient networkReachabilityStatus];
+        [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            NSLog(@"Network status change to %d", status);
+            // avoid warning about creating a retain cycle with self
+            OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+            app.networkAvailable = status;
+            [app notifyNetworkStatusObservers];
+        }];
+    }
     return YES;
 }
 
@@ -30,15 +61,9 @@
     NSString *callback_str = [config objectForKey:@"callback_url"];
     self.callback_url = callback_str ? [NSURL URLWithString:callback_str] : nil;
     NSString * base_str = [config objectForKey:@"base_url"];
-    NSURL *base_url = base_str ? [NSURL URLWithString:base_str] : nil;
-    NSString *client_key = [config objectForKey:@"client_key"];
-    NSString *client_secret = [config objectForKey:@"client_secret"];
-    self.oauthClient = nil;
-    if (client_key && client_secret) {
-        self.oauthClient = [AFOAuth2Client clientWithBaseURL:base_url
-                                                    clientID:client_key
-                                                      secret:client_secret];
-    }
+    self.base_url = base_str ? [NSURL URLWithString:base_str] : nil;
+    self.client_key = [config objectForKey:@"client_key"];
+    self.client_secret = [config objectForKey:@"client_secret"];
 }
 
 - (NSDictionary *)readDictionaryFromConfig: (NSString *)configPath
