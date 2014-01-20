@@ -12,7 +12,6 @@
 #import "OACSAppDelegate.h"
 
 @interface OACSConnectViewController ()
-    @property (weak, nonatomic) UITextField *liveTextField;
 @end
 
 @implementation OACSConnectViewController
@@ -23,7 +22,41 @@
     [self.errorLabel setHidden:YES];
     [self.password setDelegate:self];
     [self.userName setDelegate:self];
-    self.liveTextField = nil;
+    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+    [self updateStatus:app.networkAvailable];
+    [app addObserver:self
+              forKeyPath:@"networkAvailable"
+                 options:NSKeyValueObservingOptionNew
+                 context:NULL];
+}
+
+- (void)updateStatus:(AFNetworkReachabilityStatus)status {
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+        self.liveLabel.text = @"Network not available";
+        [self.connectButton setEnabled:NO];
+    }
+    else if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
+        self.liveLabel.text = @"Networked using WiFi";
+        [self.connectButton setEnabled:YES];
+    }
+    else if (status == AFNetworkReachabilityStatusReachableViaWWAN) {
+        self.liveLabel.text = @"Networked using Cellular Wireless";
+        [self.connectButton setEnabled:YES];
+    }
+    else {
+        self.liveLabel.text = @"Network status unavailable";
+        [self.connectButton setEnabled:YES];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if ([keyPath isEqual:@"networkAvailable"]) {
+        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+        [self updateStatus:app.networkAvailable];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,9 +67,9 @@
 
 - (IBAction)sendGrantRequest
 {
-    if (self.liveTextField) {
-        [self.liveTextField resignFirstResponder];
-        self.liveTextField = nil;
+    if (self.liveLabel) {
+        [self.liveLabel resignFirstResponder];
+        self.liveLabel = nil;
     }
     [self.connectButton setEnabled:NO];
     NSString *pwd = [self.password text];
@@ -75,16 +108,16 @@
 #pragma mark - UITextFieldDelegate
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
-    self.liveTextField = textField;
+    self.liveLabel = textField;
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
-    self.liveTextField = nil;
+    self.liveLabel = nil;
     [textField resignFirstResponder];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
-    self.liveTextField = nil;
+    self.liveLabel = nil;
     [textField resignFirstResponder];
     return YES;
 }

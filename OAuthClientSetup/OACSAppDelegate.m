@@ -23,12 +23,15 @@
     return _oauthClient;
 }
 
-- (void)netStatusChanged:(AFNetworkReachabilityStatus) status {
-    self.networkAvailable = status;
-}
-
-- (void)notifyNetworkStatusObservers {
-
+/*
+ Will return nil if not configured.
+ @see (void)initConfigurationFrom: (NSDictionary *)config;
+ */
+- (AFHTTPClient *)httpClient {
+    if (_httpClient == nil && self.base_url) {
+        _httpClient = [AFHTTPClient clientWithBaseURL:self.base_url];
+    }
+    return _httpClient;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -49,7 +52,6 @@
             // avoid warning about creating a retain cycle with self
             OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
             app.networkAvailable = status;
-            [app notifyNetworkStatusObservers];
         }];
     }
     return YES;

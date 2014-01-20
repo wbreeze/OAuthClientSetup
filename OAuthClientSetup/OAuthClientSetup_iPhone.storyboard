@@ -107,6 +107,12 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </activityIndicatorView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="307" translatesAutoresizingMaskIntoConstraints="NO" id="6Np-gQ-tqY">
+                                                <rect key="frame" x="7" y="311" width="307" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </scrollView>
                                 </subviews>
@@ -120,7 +126,8 @@
                     <navigationItem key="navigationItem" id="24i-u7-FXw"/>
                     <connections>
                         <outlet property="connectButton" destination="XYx-0h-gd1" id="m54-rj-FIx"/>
-                        <outlet property="errorLabel" destination="Ew5-8D-eyG" id="s1r-nI-j2e"/>
+                        <outlet property="errorLabel" destination="Ew5-8D-eyG" id="30A-bv-Vv5"/>
+                        <outlet property="liveLabel" destination="6Np-gQ-tqY" id="DcA-IA-Kod"/>
                         <outlet property="password" destination="4E1-pI-e5i" id="e7h-12-5zL"/>
                         <outlet property="userName" destination="Ag1-hT-W8I" id="huk-jP-erF"/>
                         <outlet property="workinOnIt" destination="vur-26-do4" id="lt4-Hn-R2U"/>
