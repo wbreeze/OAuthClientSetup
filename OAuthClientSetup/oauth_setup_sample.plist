@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>base_url</key>
-	<string>http://doorkeeper-client.herokuapp.com</string>
+	<string>https://doorkeeper-provider.herokuapp.com/</string>
 	<key>callback_url</key>
-	<string>http://doorkeeper-client.herokuapp.com/users/auth/doorkeeper/callback</string>
+	<string>http://doorkeeper-devise.herokuapp.com/users/auth/doorkeeper/callback</string>
 	<key>token_path</key>
 	<string>oauth/token</string>
 	<key>auth_path</key>
 	<string>oauth/authorize</string>
 	<key>client_secret</key>
-	<string>0dd5e8ed8f77007d9ed390f8cc30a760e5f8fe38e39e851f5053a70f61f4db3a</string>
+	<string>4d4594c8d3c5422961fffc41e9a66c8f7ad9aa8d686253da5dbb49c09941b488</string>
 	<key>client_key</key>
-	<string>715df16e33a4a6890230bc38be8be36f0f5eb5b93fe088aebf061402d40e15ab</string>
+	<string>ab49b9ad35b35e7f201b7adbd24178494523b24aebfbebd3ba193cf64eed9a31</string>
 </dict>
 </plist>
