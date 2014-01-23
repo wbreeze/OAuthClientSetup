@@ -12,6 +12,7 @@
 #import "OACSAppDelegate.h"
 
 @interface OACSConnectViewController ()
+@property (weak) UITextField *currentTextField;
 @end
 
 @implementation OACSConnectViewController
@@ -67,9 +68,9 @@
 
 - (IBAction)sendGrantRequest
 {
-    if (self.liveLabel) {
-        [self.liveLabel resignFirstResponder];
-        self.liveLabel = nil;
+    if (self.currentTextField) {
+        [self.currentTextField resignFirstResponder];
+        self.currentTextField = nil;
     }
     [self.connectButton setEnabled:NO];
     NSString *pwd = [self.password text];
@@ -77,26 +78,26 @@
     if (pwd && 0 < pwd.length && email && 0 < email.length) {
         [self.errorLabel setHidden:YES];
         [self.workinOnIt startAnimating];
-//        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-//        [app.oauthClient
-//         authenticateUsingOAuthWithPath:app.auth_path
-//         username:email
-//         password:pwd
-//         scope:nil
-//         success:^(AFOAuthCredential *credential) {
-//             [AFOAuthCredential storeCredential:credential
-//                                 withIdentifier:app.oauthClient.serviceProviderIdentifier];
-//             [self.workinOnIt stopAnimating];
-//             [self.connectButton setEnabled:YES];
-        [(OACSConfigureViewController *)self.parentViewController didConnect];
-//         }
-//         failure:^(NSError *error) {
-//             NSLog(@"OAuth client authorization error: %@", error);
-//             self.errorLabel.text = @"Failed to connect using these credentials.";
-//             [self.errorLabel setHidden:NO];
-//             [self.workinOnIt stopAnimating];
-//             [self.connectButton setEnabled:YES];
-//         }];
+        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+        [app.oauthClient
+         authenticateUsingOAuthWithPath:app.auth_path
+         username:email
+         password:pwd
+         scope:nil
+         success:^(AFOAuthCredential *credential) {
+             [AFOAuthCredential storeCredential:credential
+                                 withIdentifier:app.oauthClient.serviceProviderIdentifier];
+             [self.workinOnIt stopAnimating];
+             [self.connectButton setEnabled:YES];
+             [(OACSConfigureViewController *)self.parentViewController didConnect];
+         }
+         failure:^(NSError *error) {
+             NSLog(@"OAuth client authorization error: %@", error);
+             self.errorLabel.text = @"Failed to connect using these credentials.";
+             [self.errorLabel setHidden:NO];
+             [self.workinOnIt stopAnimating];
+             [self.connectButton setEnabled:YES];
+         }];
     }
     else {
         [self.errorLabel setHidden:NO];
@@ -108,16 +109,16 @@
 #pragma mark - UITextFieldDelegate
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
-    self.liveLabel = textField;
+    self.currentTextField = textField;
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
-    self.liveLabel = nil;
+    self.currentTextField = nil;
     [textField resignFirstResponder];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
-    self.liveLabel = nil;
+    self.currentTextField = nil;
     [textField resignFirstResponder];
     return YES;
 }
