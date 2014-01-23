@@ -7,6 +7,7 @@
 //
 
 #import "OACSAppDelegate.h"
+#import "PDDebugger.h"
 
 @implementation OACSAppDelegate
 
@@ -34,8 +35,16 @@
     return _httpClient;
 }
 
+- (void)configureDebug {
+    PDDebugger * debugger = [PDDebugger defaultInstance];
+    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
+    [debugger enableNetworkTrafficDebugging];
+    [debugger forwardAllNetworkTraffic];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self configureDebug];
     NSDictionary *config = nil;
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
     if (configPath)
