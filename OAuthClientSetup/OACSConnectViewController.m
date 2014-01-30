@@ -89,12 +89,15 @@
          success:^(AFOAuthCredential *credential) {
              [AFOAuthCredential storeCredential:credential
                                  withIdentifier:app.oauthClient.serviceProviderIdentifier];
+             app.creds = credential;
              [self.workinOnIt stopAnimating];
              [self.connectButton setEnabled:YES];
              [(OACSConfigureViewController *)self.parentViewController didConnect];
          }
          failure:^(NSError *error) {
              NSLog(@"OAuth client authorization error: %@", error);
+             app.creds = nil;
+             [app.oauthClient clearAuthorizationHeader];
              self.errorLabel.text = @"Failed to connect using this email and password.";
              [self.errorLabel setHidden:NO];
              [self.workinOnIt stopAnimating];

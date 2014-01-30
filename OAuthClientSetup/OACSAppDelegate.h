@@ -22,5 +22,6 @@
 @property (strong, nonatomic) NSURL *base_url;
 @property (strong, nonatomic) NSURL *callback_url;
 @property (atomic) AFNetworkReachabilityStatus networkAvailable;
+@property (strong, nonatomic) AFOAuthCredential *creds;
 
 @end
