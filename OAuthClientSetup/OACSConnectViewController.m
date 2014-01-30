@@ -76,11 +76,13 @@
     NSString *pwd = [self.password text];
     NSString *email = [self.userName text];
     if (pwd && 0 < pwd.length && email && 0 < email.length) {
+        // curl -F grant_type=password -F username=user@example.com -F password=doorkeeper http://localhost:3000/oauth/token
+        //{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
         [self.errorLabel setHidden:YES];
         [self.workinOnIt startAnimating];
         OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
         [app.oauthClient
-         authenticateUsingOAuthWithPath:app.auth_path
+         authenticateUsingOAuthWithPath:app.token_path
          username:email
          password:pwd
          scope:nil
@@ -93,7 +95,7 @@
          }
          failure:^(NSError *error) {
              NSLog(@"OAuth client authorization error: %@", error);
-             self.errorLabel.text = @"Failed to connect using these credentials.";
+             self.errorLabel.text = @"Failed to connect using this email and password.";
              [self.errorLabel setHidden:NO];
              [self.workinOnIt stopAnimating];
              [self.connectButton setEnabled:YES];
