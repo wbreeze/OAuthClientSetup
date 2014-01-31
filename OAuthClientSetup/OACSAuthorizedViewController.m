@@ -9,6 +9,8 @@
 #import "OACSAuthorizedViewController.h"
 #import "OACSConfigureViewController.h"
 #import "AFOAuth2Client.h"
+#import "OACSAppDelegate.h"
+
 
 @interface OACSAuthorizedViewController ()
 @end
@@ -28,6 +30,8 @@
 
 - (IBAction)resignAuthentication:(id)sender
 {
+    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+    [app.oauthClient clearAuthorizationHeader];
     [(OACSConfigureViewController *)self.parentViewController didReset];
 }
 
