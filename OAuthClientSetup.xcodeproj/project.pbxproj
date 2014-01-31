@@ -21,16 +21,18 @@
 		68C41A601888CEC5006F3235 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A5E1888CEC5006F3235 /* InfoPlist.strings */; };
 		68C41A621888CEC5006F3235 /* OAuthClientSetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */; };
 		68C41A6D1888D05E006F3235 /* OACSConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */; };
-		68C41A77188A0385006F3235 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A76188A0385006F3235 /* oauth_setup.plist */; };
+		68C41A77188A0385006F3235 /* oauth_setup_localhost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A76188A0385006F3235 /* oauth_setup_localhost.plist */; };
 		68C41A79188A0726006F3235 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A78188A0726006F3235 /* .gitignore */; };
 		68C41A89188A29AF006F3235 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A7D188A29AF006F3235 /* Gemfile */; };
 		68C41A8D188A29AF006F3235 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A88188A29AF006F3235 /* Podfile */; };
 		68C41A92188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A91188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard */; };
 		68C41A96188B8930006F3235 /* OACSConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A95188B8930006F3235 /* OACSConfigureViewController.m */; };
 		68C41A99188B8B21006F3235 /* OACSAuthorizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */; };
-		68C41A9B18909BF4006F3235 /* oauth_setup_sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A9A18909BF4006F3235 /* oauth_setup_sample.plist */; };
+		68C41A9B18909BF4006F3235 /* oauth_setup_herokuapp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A9A18909BF4006F3235 /* oauth_setup_herokuapp.plist */; };
 		68C41AA7189B8894006F3235 /* OACSNetStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */; };
 		68C41AA8189B8894006F3235 /* OACSNetStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */; };
+		68C41AAA189C1113006F3235 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41AA9189C1113006F3235 /* oauth_setup.plist */; };
+		68C41AAB189C1113006F3235 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41AA9189C1113006F3235 /* oauth_setup.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +66,7 @@
 		68C41A611888CEC5006F3235 /* OAuthClientSetupTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OAuthClientSetupTests.m; sourceTree = "<group>"; };
 		68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSConnectViewController.h; sourceTree = "<group>"; };
 		68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSConnectViewController.m; sourceTree = "<group>"; };
-		68C41A76188A0385006F3235 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
+		68C41A76188A0385006F3235 /* oauth_setup_localhost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_localhost.plist; sourceTree = "<group>"; };
 		68C41A78188A0726006F3235 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		68C41A7D188A29AF006F3235 /* Gemfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		68C41A88188A29AF006F3235 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -73,9 +75,10 @@
 		68C41A95188B8930006F3235 /* OACSConfigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSConfigureViewController.m; sourceTree = "<group>"; };
 		68C41A97188B8AF4006F3235 /* OACSAuthorizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthorizedViewController.h; sourceTree = "<group>"; };
 		68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthorizedViewController.m; sourceTree = "<group>"; };
-		68C41A9A18909BF4006F3235 /* oauth_setup_sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_sample.plist; sourceTree = "<group>"; };
+		68C41A9A18909BF4006F3235 /* oauth_setup_herokuapp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_herokuapp.plist; sourceTree = "<group>"; };
 		68C41AA5189B8894006F3235 /* OACSNetStatusHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSNetStatusHelper.h; sourceTree = "<group>"; };
 		68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSNetStatusHelper.m; sourceTree = "<group>"; };
+		68C41AA9189C1113006F3235 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +147,9 @@
 		68C41A421888CEC5006F3235 /* OAuthClientSetup */ = {
 			isa = PBXGroup;
 			children = (
-				68C41A76188A0385006F3235 /* oauth_setup.plist */,
-				68C41A9A18909BF4006F3235 /* oauth_setup_sample.plist */,
+				68C41A76188A0385006F3235 /* oauth_setup_localhost.plist */,
+				68C41A9A18909BF4006F3235 /* oauth_setup_herokuapp.plist */,
+				68C41AA9189C1113006F3235 /* oauth_setup.plist */,
 				68C41A4B1888CEC5006F3235 /* OACSAppDelegate.h */,
 				68C41A4C1888CEC5006F3235 /* OACSAppDelegate.m */,
 				68C41A97188B8AF4006F3235 /* OACSAuthorizedViewController.h */,
@@ -279,11 +283,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C41AAA189C1113006F3235 /* oauth_setup.plist in Resources */,
 				68C41A89188A29AF006F3235 /* Gemfile in Resources */,
 				68C41A79188A0726006F3235 /* .gitignore in Resources */,
 				68C41A92188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard in Resources */,
-				68C41A77188A0385006F3235 /* oauth_setup.plist in Resources */,
-				68C41A9B18909BF4006F3235 /* oauth_setup_sample.plist in Resources */,
+				68C41A77188A0385006F3235 /* oauth_setup_localhost.plist in Resources */,
+				68C41A9B18909BF4006F3235 /* oauth_setup_herokuapp.plist in Resources */,
 				68C41A471888CEC5006F3235 /* InfoPlist.strings in Resources */,
 				68C41A8D188A29AF006F3235 /* Podfile in Resources */,
 				68C41A4F1888CEC5006F3235 /* Images.xcassets in Resources */,
@@ -294,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C41AAB189C1113006F3235 /* oauth_setup.plist in Resources */,
 				68C41A601888CEC5006F3235 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
