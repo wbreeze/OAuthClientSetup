@@ -10,29 +10,26 @@
 #import "OACSConfigureViewController.h"
 #import "AFOAuth2Client.h"
 #import "OACSAppDelegate.h"
-
+#import "OACSNetStatusHelper.h"
 
 @interface OACSAuthorizedViewController ()
+@property (strong) OACSNetStatusHelper *statusHelper;
 @end
 
 @implementation OACSAuthorizedViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)resignAuthentication:(id)sender
 {
     OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
     [app.oauthClient clearAuthorizationHeader];
     [(OACSConfigureViewController *)self.parentViewController didReset];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.statusHelper = [[OACSNetStatusHelper new] initWithLabel:self.authNetLabel
+                                                  statusCallback:^(BOOL status){}];
 }
 
 @end

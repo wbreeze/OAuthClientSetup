@@ -15,7 +15,7 @@
 @property (nonatomic) IBOutlet UILabel *errorLabel;
 @property (nonatomic) IBOutlet UIButton *connectButton;
 @property (nonatomic) IBOutlet UIActivityIndicatorView *workinOnIt;
-@property (nonatomic) IBOutlet UILabel *liveLabel;
+@property (nonatomic) IBOutlet UILabel *connectNetLabel;
 
 - (IBAction)sendGrantRequest;
 

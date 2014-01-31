@@ -29,6 +29,8 @@
 		68C41A96188B8930006F3235 /* OACSConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A95188B8930006F3235 /* OACSConfigureViewController.m */; };
 		68C41A99188B8B21006F3235 /* OACSAuthorizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */; };
 		68C41A9B18909BF4006F3235 /* oauth_setup_sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68C41A9A18909BF4006F3235 /* oauth_setup_sample.plist */; };
+		68C41AA7189B8894006F3235 /* OACSNetStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */; };
+		68C41AA8189B8894006F3235 /* OACSNetStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		68C41A97188B8AF4006F3235 /* OACSAuthorizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthorizedViewController.h; sourceTree = "<group>"; };
 		68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthorizedViewController.m; sourceTree = "<group>"; };
 		68C41A9A18909BF4006F3235 /* oauth_setup_sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_sample.plist; sourceTree = "<group>"; };
+		68C41AA5189B8894006F3235 /* OACSNetStatusHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSNetStatusHelper.h; sourceTree = "<group>"; };
+		68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSNetStatusHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 				68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */,
 				68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */,
 				68C41A6C1888D05E006F3235 /* OACSConnectViewController.m */,
+				68C41AA5189B8894006F3235 /* OACSNetStatusHelper.h */,
+				68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */,
 				68C41A94188B8930006F3235 /* OACSConfigureViewController.h */,
 				68C41A95188B8930006F3235 /* OACSConfigureViewController.m */,
 				68C41A91188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard */,
@@ -348,6 +354,7 @@
 			files = (
 				68C41A4D1888CEC5006F3235 /* OACSAppDelegate.m in Sources */,
 				68C41A6D1888D05E006F3235 /* OACSConnectViewController.m in Sources */,
+				68C41AA7189B8894006F3235 /* OACSNetStatusHelper.m in Sources */,
 				68C41A491888CEC5006F3235 /* main.m in Sources */,
 				68C41A99188B8B21006F3235 /* OACSAuthorizedViewController.m in Sources */,
 				68C41A96188B8930006F3235 /* OACSConfigureViewController.m in Sources */,
@@ -358,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C41AA8189B8894006F3235 /* OACSNetStatusHelper.m in Sources */,
 				68C41A621888CEC5006F3235 /* OAuthClientSetupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

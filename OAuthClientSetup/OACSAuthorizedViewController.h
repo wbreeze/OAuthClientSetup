@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OACSAuthorizedViewController : UIViewController
+
+@property (nonatomic) IBOutlet UILabel *authNetLabel;
+
 - (IBAction)resignAuthentication:(id)sender;
+
 @end

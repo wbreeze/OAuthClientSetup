@@ -8,63 +8,15 @@
 
 #import "OACSConnectViewController.h"
 #import "OACSConfigureViewController.h"
-#import "AFOAuth2Client.h"
 #import "OACSAppDelegate.h"
+#import "OACSNetStatusHelper.h"
 
 @interface OACSConnectViewController ()
 @property (weak) UITextField *currentTextField;
+@property (strong) OACSNetStatusHelper *statusHelper;
 @end
 
 @implementation OACSConnectViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.errorLabel setHidden:YES];
-    [self.password setDelegate:self];
-    [self.userName setDelegate:self];
-    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-    [self updateStatus:app.networkAvailable];
-    [app addObserver:self
-              forKeyPath:@"networkAvailable"
-                 options:NSKeyValueObservingOptionNew
-                 context:NULL];
-}
-
-- (void)updateStatus:(AFNetworkReachabilityStatus)status {
-    if (status == AFNetworkReachabilityStatusNotReachable) {
-        self.liveLabel.text = @"Network not available";
-        [self.connectButton setEnabled:NO];
-    }
-    else if (status == AFNetworkReachabilityStatusReachableViaWiFi) {
-        self.liveLabel.text = @"Networked using WiFi";
-        [self.connectButton setEnabled:YES];
-    }
-    else if (status == AFNetworkReachabilityStatusReachableViaWWAN) {
-        self.liveLabel.text = @"Networked using Cellular Wireless";
-        [self.connectButton setEnabled:YES];
-    }
-    else {
-        self.liveLabel.text = @"Network status unavailable";
-        [self.connectButton setEnabled:YES];
-    }
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if ([keyPath isEqual:@"networkAvailable"]) {
-        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-        [self updateStatus:app.networkAvailable];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)sendGrantRequest
 {
@@ -109,6 +61,20 @@
         self.errorLabel.text = @"Supply email and password";
         [self.connectButton setEnabled:YES];
     }
+}
+
+#pragma mark UIViewController methods
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.errorLabel setHidden:YES];
+    [self.password setDelegate:self];
+    [self.userName setDelegate:self];
+    self.statusHelper = [[OACSNetStatusHelper new] initWithLabel:self.connectNetLabel
+                                                  statusCallback:^(BOOL status){
+                                                      [self.connectButton setEnabled:status];
+                                                  }];
 }
 
 #pragma mark - UITextFieldDelegate
