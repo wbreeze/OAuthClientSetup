@@ -11,28 +11,6 @@
 
 @implementation OACSAppDelegate
 
-- (NSString *)applicationCredentialFilePath {
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
-                                             inDomains:NSUserDomainMask];
-    NSURL* credURL = nil;
-
-    if ([possibleURLs count] >= 1) {
-        // Use the first directory (if multiple are returned)
-        NSURL *appSupportDir = [possibleURLs objectAtIndex:0];
-        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
-        NSURL *appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
-        NSError *cdError;
-        [sharedFM createDirectoryAtURL:appDirectory withIntermediateDirectories:YES attributes:nil error:&cdError];
-        if (cdError) {
-            NSLog(@"Failed to create directory, %@", appDirectory);
-        }
-        credURL = [appDirectory URLByAppendingPathComponent:@"obiwan.data"];
-    }
-
-    return [credURL path];
-}
-
 /*
  Will return nil if not configured.
  @see (void)initConfigurationFrom: (NSDictionary *)config;
@@ -64,6 +42,28 @@
     [debugger forwardAllNetworkTraffic];
 }
 
+- (NSString *)applicationCredentialFilePath {
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* credURL = nil;
+
+    if ([possibleURLs count] >= 1) {
+        // Use the first directory (if multiple are returned)
+        NSURL *appSupportDir = [possibleURLs objectAtIndex:0];
+        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        NSURL *appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
+        NSError *cdError;
+        [sharedFM createDirectoryAtURL:appDirectory withIntermediateDirectories:YES attributes:nil error:&cdError];
+        if (cdError) {
+            NSLog(@"Failed to create directory, %@", appDirectory);
+        }
+        credURL = [appDirectory URLByAppendingPathComponent:@"obiwan.data"];
+    }
+
+    return [credURL path];
+}
+
 - (void)readCredentials
 {
     NSString *archivePath = [self applicationCredentialFilePath];
@@ -77,9 +77,8 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (void)readConfiguration
 {
-    [self configureDebug];
     NSDictionary *config = nil;
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
     if (configPath)
@@ -89,17 +88,6 @@
     if (config) {
         [self initConfigurationFrom:config];
     }
-    [self readCredentials];
-    if (self.httpClient) {
-        self.networkAvailable = [self.httpClient networkReachabilityStatus];
-        [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-            NSLog(@"Network status change to %d", status);
-            // avoid warning about creating a retain cycle with self
-            OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-            app.networkAvailable = status;
-        }];
-    }
-    return YES;
 }
 
 - (void)initConfigurationFrom: (NSDictionary *)config {
@@ -128,6 +116,25 @@
     return config;
 }
 
+#pragma mark AppDelegate methods
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self configureDebug];
+    [self readConfiguration];
+    [self readCredentials];
+    if (self.httpClient) {
+        self.networkAvailable = [self.httpClient networkReachabilityStatus];
+        [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            NSLog(@"Network status change to %d", status);
+            // next line: load self as app delegate to avoid warning about creating a retain cycle with self
+            OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
+            app.networkAvailable = status;
+        }];
+    }
+    return YES;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -153,6 +160,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self readConfiguration];
     [self readCredentials];
 }
 
