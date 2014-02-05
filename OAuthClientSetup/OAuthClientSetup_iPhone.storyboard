@@ -17,18 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="FWG-bc-V0p">
-                                <rect key="frame" x="20" y="56" width="280" height="367"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-mh-QnY">
+                                <rect key="frame" x="150" y="28" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opP-df-fTc">
                                 <rect key="frame" x="20" y="23" width="122" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Fetch Me">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendMeRequest" destination="yrT-lc-YbU" eventType="touchUpInside" id="cWZ-5j-Chk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GO-2G-xa2">
                                 <rect key="frame" x="178" y="23" width="122" height="30"/>
@@ -37,10 +38,12 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-mh-QnY">
-                                <rect key="frame" x="150" y="28" width="20" height="20"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="FWG-bc-V0p">
+                                <rect key="frame" x="20" y="56" width="280" height="367"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -48,13 +51,13 @@
                             <constraint firstItem="M8X-2j-8Ct" firstAttribute="top" secondItem="FWG-bc-V0p" secondAttribute="bottom" constant="20" symbolic="YES" id="Cbt-JW-ZUu"/>
                             <constraint firstItem="tdJ-mh-QnY" firstAttribute="leading" secondItem="opP-df-fTc" secondAttribute="trailing" constant="8" symbolic="YES" id="GNt-2T-iUs"/>
                             <constraint firstItem="opP-df-fTc" firstAttribute="leading" secondItem="W4r-eQ-0f0" secondAttribute="leading" constant="20" symbolic="YES" id="MbY-eS-LTS"/>
-                            <constraint firstItem="tdJ-mh-QnY" firstAttribute="top" secondItem="KiN-9i-eMF" secondAttribute="bottom" constant="20" symbolic="YES" id="NkT-xH-QFg"/>
                             <constraint firstItem="FWG-bc-V0p" firstAttribute="top" secondItem="tdJ-mh-QnY" secondAttribute="bottom" constant="8" symbolic="YES" id="Qmc-LE-7H1"/>
                             <constraint firstItem="opP-df-fTc" firstAttribute="centerY" secondItem="tdJ-mh-QnY" secondAttribute="centerY" id="XJz-9S-YHT"/>
                             <constraint firstItem="7GO-2G-xa2" firstAttribute="leading" secondItem="tdJ-mh-QnY" secondAttribute="trailing" constant="8" symbolic="YES" id="fhe-ha-IvX"/>
                             <constraint firstItem="7GO-2G-xa2" firstAttribute="centerY" secondItem="tdJ-mh-QnY" secondAttribute="centerY" id="qXJ-ZN-9bK"/>
                             <constraint firstAttribute="trailing" secondItem="FWG-bc-V0p" secondAttribute="trailing" constant="20" symbolic="YES" id="sWq-ZD-CDT"/>
                             <constraint firstAttribute="trailing" secondItem="7GO-2G-xa2" secondAttribute="trailing" constant="20" symbolic="YES" id="tre-5P-PEy"/>
+                            <constraint firstItem="tdJ-mh-QnY" firstAttribute="top" secondItem="KiN-9i-eMF" secondAttribute="bottom" constant="20" symbolic="YES" id="txY-vJ-4Oo"/>
                             <constraint firstAttribute="centerX" secondItem="tdJ-mh-QnY" secondAttribute="centerX" id="u89-eQ-j4v"/>
                         </constraints>
                     </view>
