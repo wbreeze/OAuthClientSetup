@@ -11,30 +11,8 @@
 
 @implementation OACSAppDelegate
 
-/*
- Will return nil if not configured.
- @see (void)initConfigurationFrom: (NSDictionary *)config;
- */
-- (AFOAuth2Client *)oauthClient {
-    if (_oauthClient == nil && self.base_url && self.client_key && self.client_secret) {
-        _oauthClient = [AFOAuth2Client clientWithBaseURL:self.base_url
-                                                clientID:self.client_key
-                                                  secret:self.client_secret];
-    }
-    return _oauthClient;
-}
-
-/*
- Will return nil if not configured.
- @see (void)initConfigurationFrom: (NSDictionary *)config;
- */
-- (AFHTTPClient *)httpClient {
-    if (_httpClient == nil && self.base_url) {
-        _httpClient = [AFHTTPClient clientWithBaseURL:self.base_url];
-    }
-    return _httpClient;
-}
-
+// Pony Debugger instruments application network traffic monitoring
+// via Pony server, both from the people at Square
 - (void)configureDebug {
     PDDebugger * debugger = [PDDebugger defaultInstance];
     [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
@@ -42,12 +20,12 @@
     [debugger forwardAllNetworkTraffic];
 }
 
+// credentials archived in user space application support directory
 - (NSString *)applicationCredentialFilePath {
     NSFileManager* sharedFM = [NSFileManager defaultManager];
     NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
                                              inDomains:NSUserDomainMask];
     NSURL* credURL = nil;
-
     if ([possibleURLs count] >= 1) {
         // Use the first directory (if multiple are returned)
         NSURL *appSupportDir = [possibleURLs objectAtIndex:0];
@@ -64,74 +42,24 @@
     return [credURL path];
 }
 
-- (void)readCredentials
+// configuration is in the bundle
+- (NSString *)configurationFilePath
 {
-    NSString *archivePath = [self applicationCredentialFilePath];
-    NSFileManager* sharedFM = [NSFileManager defaultManager];
-    if ([sharedFM fileExistsAtPath:archivePath isDirectory:NO]) {
-        self.creds = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
-        if (self.creds) {
-            NSLog(@"retrieved credentials");
-            [[self oauthClient] setAuthorizationHeaderWithCredential:_creds];
-        }
-    }
-}
-
-- (void)readConfiguration
-{
-    NSDictionary *config = nil;
-    NSString *configPath = [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
-    if (configPath)
-    {
-        config = [self readDictionaryFromConfig:configPath];
-    }
-    if (config) {
-        [self initConfigurationFrom:config];
-    }
-}
-
-- (void)initConfigurationFrom: (NSDictionary *)config {
-    self.auth_path = [config objectForKey:@"auth_path"];
-    self.token_path = [config objectForKey:@"token_path"];
-    NSString *callback_str = [config objectForKey:@"callback_url"];
-    self.callback_url = callback_str ? [NSURL URLWithString:callback_str] : nil;
-    NSString * base_str = [config objectForKey:@"base_url"];
-    self.base_url = base_str ? [NSURL URLWithString:base_str] : nil;
-    self.client_key = [config objectForKey:@"client_key"];
-    self.client_secret = [config objectForKey:@"client_secret"];
-}
-
-- (NSDictionary *)readDictionaryFromConfig: (NSString *)configPath
-{
-    NSString *errorDesc = nil;
-    NSData *configXML = [[NSFileManager defaultManager] contentsAtPath:configPath];
-    NSDictionary *config = (NSDictionary *)[NSPropertyListSerialization
-                                            propertyListFromData:configXML
-                                            mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                            format:NULL
-                                            errorDescription:&errorDesc];
-    if (!config) {
-        NSLog(@"Error reading config is '%@'", errorDesc);
-    }
-    return config;
+    return [[NSBundle mainBundle] pathForResource:@"oauth_setup" ofType:@"plist"];
 }
 
 #pragma mark AppDelegate methods
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self configureDebug];
-    [self readConfiguration];
-    [self readCredentials];
-    if (self.httpClient) {
-        self.networkAvailable = [self.httpClient networkReachabilityStatus];
-        [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-            NSLog(@"Network status change to %d", status);
-            // next line: load self as app delegate to avoid warning about creating a retain cycle with self
-            OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-            app.networkAvailable = status;
-        }];
+    self.client = [[OACSAuthClient alloc] initWithConfigurationAt:[self configurationFilePath] archiveAt:[self applicationCredentialFilePath]];
+    UITabBarController *tabsController = (UITabBarController *)self.window.rootViewController;
+    NSArray *tabViews = tabsController.childViewControllers;
+    for (NSUInteger i = 0; i < tabViews.count; ++i) {
+        NSObject <OACSAuthClientConsumer> *childView = tabViews[i];
+        [childView setAuthClient:self.client];
     }
+    [self configureDebug];
     return YES;
 }
 
@@ -145,23 +73,14 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    if (self.creds != nil) {
-        NSString *archivePath = [self applicationCredentialFilePath];
-        if ([NSKeyedArchiver archiveRootObject:self.creds toFile:archivePath]) {
-            NSLog(@"archived credentials at %@", archivePath);
-        }
-        else
-        {
-            NSLog(@"failed to archive credentials at %@", archivePath);
-        }
-    }
+    [self.client archiveTo:[self applicationCredentialFilePath]];
+    self.client = nil;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self readConfiguration];
-    [self readCredentials];
+    self.client = [[OACSAuthClient alloc] initWithConfigurationAt:[self configurationFilePath] archiveAt:[self applicationCredentialFilePath]];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

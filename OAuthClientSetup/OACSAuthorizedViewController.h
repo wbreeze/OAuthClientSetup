@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "OACSAuthClient.h"
 
 @interface OACSAuthorizedViewController : UIViewController
 
 @property (nonatomic) IBOutlet UILabel *authNetLabel;
+@property (weak, nonatomic) OACSAuthClient *client;
 
 - (IBAction)resignAuthentication:(id)sender;
 

@@ -9,7 +9,6 @@
 #import "OACSAuthorizedViewController.h"
 #import "OACSConfigureViewController.h"
 #import "AFOAuth2Client.h"
-#import "OACSAppDelegate.h"
 #import "OACSNetStatusHelper.h"
 
 @interface OACSAuthorizedViewController ()
@@ -20,8 +19,7 @@
 
 - (IBAction)resignAuthentication:(id)sender
 {
-    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-    [app.oauthClient clearAuthorizationHeader];
+    [self.client.oauthClient clearAuthorizationHeader];
     [(OACSConfigureViewController *)self.parentViewController didReset];
 }
 
@@ -30,6 +28,8 @@
     [super viewDidLoad];
     self.statusHelper = [[OACSNetStatusHelper new] initWithLabel:self.authNetLabel
                                                   statusCallback:^(BOOL status){}];
+    [self.client observeNetworkAvailabilityChanges:self.statusHelper];
+    [self.statusHelper updateStatus:[self.client networkAvailable]];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OACSAuthClient.h"
 
 @interface OACSConnectViewController : UIViewController <UITextFieldDelegate>
 
@@ -16,6 +17,7 @@
 @property (nonatomic) IBOutlet UIButton *connectButton;
 @property (nonatomic) IBOutlet UIActivityIndicatorView *workinOnIt;
 @property (nonatomic) IBOutlet UILabel *connectNetLabel;
+@property (weak, nonatomic) OACSAuthClient *client;
 
 - (IBAction)sendGrantRequest;
 

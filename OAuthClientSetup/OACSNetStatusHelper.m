@@ -7,8 +7,6 @@
 //
 
 #import "OACSNetStatusHelper.h"
-#import "OACSAppDelegate.h"
-#import "AFOAuth2Client.h"
 
 @interface OACSNetStatusHelper ()
 
@@ -38,13 +36,14 @@
     }
 }
 
+// acts as key value observer for AFHTTPClient networkReachabilityStatus
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if ([keyPath isEqual:@"networkAvailable"]) {
-        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-        [self updateStatus:app.networkAvailable];
+    if ([keyPath isEqual:@"networkReachabilityStatus"]) {
+        AFHTTPClient *netClient = (AFHTTPClient *)object;
+        [self updateStatus:[netClient networkReachabilityStatus]];
     }
 }
 
@@ -54,12 +53,6 @@
     if (self) {
         self.liveLabel = label;
         self.connectStatusUpdate = updateStatus;
-        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-        [self updateStatus:app.networkAvailable];
-        [app addObserver:self
-              forKeyPath:@"networkAvailable"
-                 options:NSKeyValueObservingOptionNew
-                 context:NULL];
     }
     return self;
 }

@@ -8,7 +8,6 @@
 
 #import "OACSConnectViewController.h"
 #import "OACSConfigureViewController.h"
-#import "OACSAppDelegate.h"
 #import "OACSNetStatusHelper.h"
 
 @interface OACSConnectViewController ()
@@ -32,24 +31,23 @@
         //{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
         [self.errorLabel setHidden:YES];
         [self.workinOnIt startAnimating];
-        OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-        [app.oauthClient
-         authenticateUsingOAuthWithPath:app.token_path
+        [self.client.oauthClient
+         authenticateUsingOAuthWithPath:self.client.token_path
          username:email
          password:pwd
          scope:nil
          success:^(AFOAuthCredential *credential) {
              [AFOAuthCredential storeCredential:credential
-                                 withIdentifier:app.oauthClient.serviceProviderIdentifier];
-             app.creds = credential;
+                                 withIdentifier:self.client.oauthClient.serviceProviderIdentifier];
+             self.client.creds = credential;
              [self.workinOnIt stopAnimating];
              [self.connectButton setEnabled:YES];
              [(OACSConfigureViewController *)self.parentViewController didConnect];
          }
          failure:^(NSError *error) {
              NSLog(@"OAuth client authorization error: %@", error);
-             app.creds = nil;
-             [app.oauthClient clearAuthorizationHeader];
+             self.client.creds = nil;
+             [self.client.oauthClient clearAuthorizationHeader];
              self.errorLabel.text = @"Failed to connect using this email and password.";
              [self.errorLabel setHidden:NO];
              [self.workinOnIt stopAnimating];
@@ -75,6 +73,8 @@
                                                   statusCallback:^(BOOL status){
                                                       [self.connectButton setEnabled:status];
                                                   }];
+    [self.client observeNetworkAvailabilityChanges:self.statusHelper];
+    [self.statusHelper updateStatus:[self.client networkAvailable]];
 }
 
 #pragma mark - UITextFieldDelegate

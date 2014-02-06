@@ -7,7 +7,6 @@
 //
 
 #import "OACSapiViewController.h"
-#import "OACSAppDelegate.h"
 #import "AFHTTPRequestOperation.h"
 
 @interface OACSapiViewController ()
@@ -15,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *profilesButton;
 @property (strong, nonatomic) IBOutlet UILabel *resultText;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *workinOnIt;
+@property (weak) OACSAuthClient *client;
 @end
 
 @implementation OACSapiViewController
@@ -44,10 +44,9 @@
 {
     [self.meButton setEnabled:NO];
     [self.workinOnIt startAnimating];
-    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-    AFHTTPClient *client = app.httpClient;
-    [client setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", [app.creds accessToken]]];
-    [client getPath:@"api/v1/me.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPClient *httpClient = self.client.httpClient;
+    [httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", [self.client.creds accessToken]]];
+    [httpClient getPath:@"api/v1/me.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response has %@", responseObject);
         [self.workinOnIt stopAnimating];
         [self.meButton setEnabled:YES];
@@ -69,6 +68,12 @@
 {
     [self.profilesButton setEnabled:NO];
     [self.workinOnIt startAnimating];
+}
+
+#pragma mark OACSAuthClientConsumer
+
+- (void)setAuthClient: (OACSAuthClient *)client {
+    self.client = client;
 }
 
 @end

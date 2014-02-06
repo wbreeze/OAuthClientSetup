@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OACSAuthClient.h"
 
-@interface OACSConfigureViewController : UIViewController
+@interface OACSConfigureViewController : UIViewController <OACSAuthClientConsumer>
 
 - (void)didConnect;
 - (void)didReset;

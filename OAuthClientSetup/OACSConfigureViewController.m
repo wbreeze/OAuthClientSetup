@@ -10,12 +10,12 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
 #import "OACSConfigureViewController.h"
 #import "OACSConnectViewController.h"
 #import "OACSAuthorizedViewController.h"
-#import "OACSAppDelegate.h"
 
 @interface OACSConfigureViewController ()
 
 @property (weak, nonatomic) OACSConnectViewController *connectVC;
 @property (weak, nonatomic) OACSAuthorizedViewController *authorizedVC;
+@property (weak, nonatomic) OACSAuthClient *client;
 
 @end
 
@@ -25,6 +25,7 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
     if (_connectVC == nil) {
         UIStoryboard *storyboard = self.storyboard;
         _connectVC = [storyboard instantiateViewControllerWithIdentifier:@"OACSConnectViewController"];
+        _connectVC.client = self.client;
     }
     return _connectVC;
 }
@@ -33,6 +34,7 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
     if (_authorizedVC == nil) {
         UIStoryboard *storyboard = self.storyboard;
         _authorizedVC = [storyboard instantiateViewControllerWithIdentifier:@"OACSAuthorizedViewController"];
+        _authorizedVC.client = self.client;
     }
     return _authorizedVC;
 }
@@ -40,14 +42,13 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    OACSAppDelegate *app = (OACSAppDelegate *)([UIApplication sharedApplication].delegate);
-    if (app.creds && app.oauthClient) {
+    if (self.client.creds && self.client.oauthClient) {
         OACSAuthorizedViewController *avc = self.authorizedVC;
         [self addChildViewController:avc];
         [self.view addSubview:avc.view];
         [avc didMoveToParentViewController:self];
     }
-    else if (app.oauthClient && app.auth_path && app.token_path && app.callback_url) {
+    else if (self.client.oauthClient && self.client.auth_path && self.client.token_path && self.client.callback_url) {
         OACSConnectViewController *cvc = self.connectVC;
         [self addChildViewController:cvc];
         [self.view addSubview:cvc.view];
@@ -82,6 +83,12 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark OACSAuthClientConsumer
+
+- (void)setAuthClient: (OACSAuthClient *)client {
+    self.client = client;
 }
 
 @end

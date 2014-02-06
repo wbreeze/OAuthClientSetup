@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OACSAuthClient.h"
 
-@interface OACSapiViewController : UIViewController
+@interface OACSapiViewController : UIViewController <OACSAuthClientConsumer>
 @end
