@@ -97,6 +97,19 @@
      }];
 }
 
+// curl -H "Authorization: Bearer 62ddf08bf0c8e9bbf99524a30617e71fc2aec1a5cb75a5f2de862ee236de5ce5" http://localhost:3000/api/v1/me.json
+- (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
+    [self.httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", [self.creds accessToken]]];
+    [self.httpClient getPath:path parameters:parameters
+                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         NSLog(@"authorizedGet response has %@", responseObject);
+                         success();
+                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         NSLog(@"authorizedGet request failure is %@", error);
+                         failure([error localizedDescription]);
+                     }];
+}
+
 #pragma mark private
 
 - (void)initConfigurationFrom: (NSDictionary *)config {
