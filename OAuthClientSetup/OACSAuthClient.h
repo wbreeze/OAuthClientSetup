@@ -28,6 +28,7 @@
 
 - (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
 - (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
+- (void)resignAuthorization;
 
 @end
 

@@ -14,6 +14,6 @@
 @property (nonatomic) IBOutlet UILabel *authNetLabel;
 @property (weak, nonatomic) OACSAuthClient *client;
 
-- (IBAction)resignAuthentication:(id)sender;
+- (IBAction)resignAuthorization:(id)sender;
 
 @end

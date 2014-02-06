@@ -77,7 +77,7 @@
         <scene sceneID="SvY-K2-tA0">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="saF-GK-56N" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="uXI-8y-QuM">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -277,7 +277,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="resignAuthentication:" destination="AU1-DU-eZS" eventType="touchUpInside" id="R5x-7K-Li1"/>
+                                    <action selector="resignAuthorization:" destination="AU1-DU-eZS" eventType="touchUpInside" id="QjO-cJ-ZYa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="860" verticalHuggingPriority="418" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-sU-pBc">

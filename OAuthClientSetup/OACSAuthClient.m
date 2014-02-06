@@ -110,6 +110,12 @@
                      }];
 }
 
+- (void)resignAuthorization {
+    // TODO tell the authorization server to deny the client grant from this user
+    [self.oauthClient clearAuthorizationHeader];
+    self.creds = nil;
+}
+
 #pragma mark private
 
 - (void)initConfigurationFrom: (NSDictionary *)config {

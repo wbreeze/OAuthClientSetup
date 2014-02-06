@@ -17,9 +17,9 @@
 
 @implementation OACSAuthorizedViewController
 
-- (IBAction)resignAuthentication:(id)sender
+- (IBAction)resignAuthorization:(id)sender
 {
-    [self.client.oauthClient clearAuthorizationHeader];
+    [self.client resignAuthorization];
     [(OACSConfigureViewController *)self.parentViewController didReset];
 }
 
