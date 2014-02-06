@@ -27,28 +27,16 @@
     NSString *pwd = [self.password text];
     NSString *email = [self.userName text];
     if (pwd && 0 < pwd.length && email && 0 < email.length) {
-        // curl -F grant_type=password -F username=user@example.com -F password=doorkeeper http://localhost:3000/oauth/token
-        //{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
         [self.errorLabel setHidden:YES];
         [self.workinOnIt startAnimating];
-        [self.client.oauthClient
-         authenticateUsingOAuthWithPath:self.client.token_path
-         username:email
-         password:pwd
-         scope:nil
-         success:^(AFOAuthCredential *credential) {
-             [AFOAuthCredential storeCredential:credential
-                                 withIdentifier:self.client.oauthClient.serviceProviderIdentifier];
-             self.client.creds = credential;
+        [self.client authorizeUser:email password:pwd
+         onSuccess:^() {
              [self.workinOnIt stopAnimating];
              [self.connectButton setEnabled:YES];
              [(OACSConfigureViewController *)self.parentViewController didConnect];
          }
-         failure:^(NSError *error) {
-             NSLog(@"OAuth client authorization error: %@", error);
-             self.client.creds = nil;
-             [self.client.oauthClient clearAuthorizationHeader];
-             self.errorLabel.text = @"Failed to connect using this email and password.";
+         onFailure:^(NSString *localizedErrorDescription) {
+             self.errorLabel.text = localizedErrorDescription;
              [self.errorLabel setHidden:NO];
              [self.workinOnIt stopAnimating];
              [self.connectButton setEnabled:YES];

@@ -24,7 +24,9 @@
 - (OACSAuthClient *)initWithConfigurationAt: (NSString *)configPath archiveAt:(NSString *)archivePath;
 - (void)archiveTo:(NSString *)archivePath;
 - (void)observeNetworkAvailabilityChanges: (NSObject *)observer;
-- (AFNetworkReachabilityStatus) networkAvailable;
+- (AFNetworkReachabilityStatus)networkAvailable;
+
+- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
 
 @end
 

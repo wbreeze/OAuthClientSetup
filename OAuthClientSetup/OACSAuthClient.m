@@ -75,6 +75,28 @@
     return [self.httpClient networkReachabilityStatus];
 }
 
+// curl -F grant_type=password -F username=user@example.com -F password=doorkeeper http://localhost:3000/oauth/token
+//{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
+- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
+    [self.oauthClient
+     authenticateUsingOAuthWithPath:self.token_path
+     username:user_name
+     password:password
+     scope:nil
+     success:^(AFOAuthCredential *credential) {
+         [AFOAuthCredential storeCredential:credential
+                             withIdentifier:self.oauthClient.serviceProviderIdentifier];
+         self.creds = credential;
+         success();
+     }
+     failure:^(NSError *error) {
+         NSLog(@"OAuth client authorization error: %@", error);
+         self.creds = nil;
+         [self.oauthClient clearAuthorizationHeader];
+         failure([error localizedDescription]);
+     }];
+}
+
 #pragma mark private
 
 - (void)initConfigurationFrom: (NSDictionary *)config {
