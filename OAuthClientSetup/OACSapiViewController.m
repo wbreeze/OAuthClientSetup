@@ -44,10 +44,10 @@
     [self.meButton setEnabled:NO];
     [self.workinOnIt startAnimating];
     [self.client authorizedGet:@"api/v1/me.json" parameters:nil
-                     onSuccess:^() {
+                     onSuccess:^(NSDictionary *response) {
                          [self.workinOnIt stopAnimating];
                          [self.meButton setEnabled:YES];
-                         [self.resultText setText:@"success"];
+                         [self.resultText setText:[response description]];
                      } onFailure:^(NSString *localizedDescription) {
                          [self.workinOnIt stopAnimating];
                          [self.meButton setEnabled:YES];
@@ -59,6 +59,18 @@
 {
     [self.profilesButton setEnabled:NO];
     [self.workinOnIt startAnimating];
+    [self.client authorizedGet:@"api/v1/profiles.json" parameters:nil
+                     onSuccess:^(NSDictionary *response) {
+                         [self.workinOnIt stopAnimating];
+                         [self.profilesButton setEnabled:YES];
+                         NSArray *profiles = (NSArray *)response;
+                         NSString *showProfiles = [NSString stringWithFormat:@"%d profiles.  First is %@", profiles.count, profiles[0]];
+                         [self.resultText setText:showProfiles];
+                     } onFailure:^(NSString *localizedDescription) {
+                         [self.workinOnIt stopAnimating];
+                         [self.profilesButton setEnabled:YES];
+                         [self.resultText setText:localizedDescription];
+                     }];
 }
 
 #pragma mark OACSAuthClientConsumer

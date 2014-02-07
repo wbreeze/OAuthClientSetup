@@ -37,6 +37,9 @@
                                 <state key="normal" title="Fetch Profiles">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendProfilesRequest" destination="yrT-lc-YbU" eventType="touchUpInside" id="kgx-VW-maQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="FWG-bc-V0p">
                                 <rect key="frame" x="20" y="56" width="280" height="367"/>
