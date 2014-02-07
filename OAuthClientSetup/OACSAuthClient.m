@@ -94,20 +94,25 @@
      }
      failure:^(NSError *error) {
          NSLog(@"OAuth client authorization error: %@", error);
-         self.creds = nil;
-         [self.oauthClient clearAuthorizationHeader];
-         failure([error localizedDescription]);
+         NSDictionary *ui = [error userInfo];
+
+         NSHTTPURLResponse *response = [ui valueForKey:AFNetworkingOperationFailingURLResponseErrorKey];
+         NSInteger status = response.statusCode;
+         if (400 <= status && status < 500) {
+             [self resignAuthorization];
+         }
+         failure([ui valueForKey:NSLocalizedRecoverySuggestionErrorKey]);
      }];
 }
 
 // curl -H "Authorization: Bearer 62ddf08bf0c8e9bbf99524a30617e71fc2aec1a5cb75a5f2de862ee236de5ce5" http://localhost:3000/api/v1/me.json
-- (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
+- (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(NSString *))failure {
     [self authorizedRequest:@"GET" path:path parameters:parameters onSuccess:success onFailure:failure retry:YES];
 }
 
 - (void)authorizedRequest:(NSString *)method path:(NSString *)path
                parameters:(NSDictionary *)parameters
-                onSuccess:(void (^)())success
+                onSuccess:(void (^)(id))success
                 onFailure:(void (^)(NSString *))failure
                     retry:(BOOL) doRetry {
     if (self.creds.expired && doRetry) {
@@ -120,17 +125,19 @@
         [self.httpClient
          HTTPRequestOperationWithRequest:request
          success:^(AFHTTPRequestOperation *op, id responseObject) {
-             NSLog(@"authorizedGet response has %@", responseObject);
-             success();
+             success(responseObject);
          }
          failure:^(AFHTTPRequestOperation *op, NSError *error) {
              NSHTTPURLResponse *response = op.response;
-             if (response.statusCode == 401 && doRetry) {
-                 NSLog(@"Have 401");
+             if (401 == response.statusCode && doRetry) {
                  [self refreshAndRetry:method path:path parameters:parameters onSuccess:success onFailure:failure];
              }
-             NSLog(@"authorizedGet request failure is %@", error);
-             failure([error localizedDescription]);
+             else {
+                 if (400 <= response.statusCode && response.statusCode < 500) {
+                     [self resignAuthorization];
+                 }
+                 failure([self responseCodeInterpretation:response.statusCode]);
+             }
          }];
         [self.httpClient enqueueHTTPRequestOperation:operation];
     }
@@ -144,16 +151,39 @@
 
 #pragma mark private
 
-- (void)refreshAndRetry:(NSString *)method path:(NSString*)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
-    [self.oauthClient authenticateUsingOAuthWithPath:self.token_path refreshToken:self.creds.refreshToken success:^(AFOAuthCredential *credential) {
-        [AFOAuthCredential storeCredential:credential
-                            withIdentifier:self.oauthClient.serviceProviderIdentifier];
-        self.creds = credential;
-        [self authorizedRequest:method path:path parameters:parameters onSuccess:success onFailure:failure retry:NO];
+- (NSString *)responseCodeInterpretation:(NSInteger)code {
+    NSString *description;
+    if (500 <= code){
+        description = @"Unable to connect";
     }
-     failure:^(NSError *error) {
-         failure([error localizedDescription]);
-     }];
+    else if (400 <= code) {
+        description = @"Application is no longer authorized";
+    }
+    else {
+        description = [NSString stringWithFormat:@"HTTP Response error code %d", code];
+    }
+    return description;
+}
+
+- (void)refreshAndRetry:(NSString *)method path:(NSString*)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
+    if (self.creds.refreshToken) {
+        [self.oauthClient
+         authenticateUsingOAuthWithPath:self.token_path
+         refreshToken:self.creds.refreshToken
+         success:^(AFOAuthCredential *credential) {
+             [AFOAuthCredential storeCredential:credential
+                                 withIdentifier:self.oauthClient.serviceProviderIdentifier];
+             self.creds = credential;
+             [self authorizedRequest:method path:path parameters:parameters onSuccess:success onFailure:failure retry:NO];
+         }
+         failure:^(NSError *error) {
+             [self resignAuthorization];
+             failure(@"Application is no longer authorized");
+         }];
+    }
+    else {
+        failure(@"Application is no longer authorized");
+    }
 }
 
 - (void)initConfigurationFrom: (NSDictionary *)config {
