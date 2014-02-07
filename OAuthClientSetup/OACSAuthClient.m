@@ -7,6 +7,7 @@
 //
 
 #import "OACSAuthClient.h"
+#import "AFJSONRequestOperation.h"
 
 @implementation OACSAuthClient
 
@@ -26,10 +27,12 @@
 /*
  Will return nil if not configured.
  @see (void)initConfigurationFrom: (NSDictionary *)config;
+ Returns client configured for JSON requests
  */
 - (AFHTTPClient *)httpClient {
     if (_httpClient == nil && self.base_url) {
         _httpClient = [AFHTTPClient clientWithBaseURL:self.base_url];
+        [_httpClient registerHTTPOperationClass:AFJSONRequestOperation.class];
     }
     return _httpClient;
 }
@@ -99,15 +102,38 @@
 
 // curl -H "Authorization: Bearer 62ddf08bf0c8e9bbf99524a30617e71fc2aec1a5cb75a5f2de862ee236de5ce5" http://localhost:3000/api/v1/me.json
 - (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
-    [self.httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", [self.creds accessToken]]];
-    [self.httpClient getPath:path parameters:parameters
-                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         NSLog(@"authorizedGet response has %@", responseObject);
-                         success();
-                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                         NSLog(@"authorizedGet request failure is %@", error);
-                         failure([error localizedDescription]);
-                     }];
+    [self authorizedRequest:@"GET" path:path parameters:parameters onSuccess:success onFailure:failure retry:YES];
+}
+
+- (void)authorizedRequest:(NSString *)method path:(NSString *)path
+               parameters:(NSDictionary *)parameters
+                onSuccess:(void (^)())success
+                onFailure:(void (^)(NSString *))failure
+                    retry:(BOOL) doRetry {
+    if (self.creds.expired && doRetry) {
+        [self refreshAndRetry:method path:path parameters:parameters onSuccess:success onFailure:failure];
+    }
+    else {
+        [self.httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", [self.creds accessToken]]];
+        NSURLRequest *request = [self.httpClient requestWithMethod:method path:path parameters:parameters];
+        AFHTTPRequestOperation *operation =
+        [self.httpClient
+         HTTPRequestOperationWithRequest:request
+         success:^(AFHTTPRequestOperation *op, id responseObject) {
+             NSLog(@"authorizedGet response has %@", responseObject);
+             success();
+         }
+         failure:^(AFHTTPRequestOperation *op, NSError *error) {
+             NSHTTPURLResponse *response = op.response;
+             if (response.statusCode == 401 && doRetry) {
+                 NSLog(@"Have 401");
+                 [self refreshAndRetry:method path:path parameters:parameters onSuccess:success onFailure:failure];
+             }
+             NSLog(@"authorizedGet request failure is %@", error);
+             failure([error localizedDescription]);
+         }];
+        [self.httpClient enqueueHTTPRequestOperation:operation];
+    }
 }
 
 - (void)resignAuthorization {
@@ -117,6 +143,18 @@
 }
 
 #pragma mark private
+
+- (void)refreshAndRetry:(NSString *)method path:(NSString*)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
+    [self.oauthClient authenticateUsingOAuthWithPath:self.token_path refreshToken:self.creds.refreshToken success:^(AFOAuthCredential *credential) {
+        [AFOAuthCredential storeCredential:credential
+                            withIdentifier:self.oauthClient.serviceProviderIdentifier];
+        self.creds = credential;
+        [self authorizedRequest:method path:path parameters:parameters onSuccess:success onFailure:failure retry:NO];
+    }
+     failure:^(NSError *error) {
+         failure([error localizedDescription]);
+     }];
+}
 
 - (void)initConfigurationFrom: (NSDictionary *)config {
     self.auth_path = [config objectForKey:@"auth_path"];
