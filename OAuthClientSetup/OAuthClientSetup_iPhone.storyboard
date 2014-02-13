@@ -116,8 +116,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QjR-iU-aID" firstAttribute="top" secondItem="Dep-OA-Sti" secondAttribute="bottom" constant="8" id="gl4-c7-KNJ"/>
                             <constraint firstItem="QjR-iU-aID" firstAttribute="centerX" secondItem="ho9-Wb-S0z" secondAttribute="centerX" id="h3A-Dg-tVm"/>
-                            <constraint firstItem="QjR-iU-aID" firstAttribute="top" secondItem="Dep-OA-Sti" secondAttribute="bottom" constant="20" symbolic="YES" id="qpT-aU-eJG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="auQ-jx-VNk"/>
@@ -265,14 +265,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are authorized.  Press 'Reset' to revoke authorization." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Z-zT-NQo">
-                                <rect key="frame" x="20" y="28" width="280" height="41"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This device is authorized.  Press 'Reset' when you would like to revoke authorization." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Z-zT-NQo">
+                                <rect key="frame" x="20" y="28" width="280" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0B-Iz-jYp">
-                                <rect key="frame" x="138" y="77" width="45" height="33"/>
+                                <rect key="frame" x="138" y="97" width="45" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="revoke authorization" label="reset"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
