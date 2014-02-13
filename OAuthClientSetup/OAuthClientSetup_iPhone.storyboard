@@ -64,7 +64,7 @@
                             <constraint firstAttribute="centerX" secondItem="tdJ-mh-QnY" secondAttribute="centerX" id="u89-eQ-j4v"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="iOL-s8-VnX"/>
+                    <tabBarItem key="tabBarItem" title="API" id="iOL-s8-VnX"/>
                     <connections>
                         <outlet property="meButton" destination="opP-df-fTc" id="TQe-1I-yZh"/>
                         <outlet property="profilesButton" destination="7GO-2G-xa2" id="XV1-zU-fxj"/>
@@ -120,7 +120,7 @@
                             <constraint firstItem="QjR-iU-aID" firstAttribute="centerX" secondItem="ho9-Wb-S0z" secondAttribute="centerX" id="h3A-Dg-tVm"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="auQ-jx-VNk"/>
+                    <tabBarItem key="tabBarItem" title="Connection" id="auQ-jx-VNk"/>
                     <navigationItem key="navigationItem" id="CCL-8B-SAx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2c-sR-a87" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,23 +218,23 @@
                             <constraint firstItem="Ew5-8D-eyG" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" constant="20" symbolic="YES" id="9i0-YA-0k9"/>
                             <constraint firstItem="6Np-gQ-tqY" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" constant="20" symbolic="YES" id="CaL-rP-ND4"/>
                             <constraint firstAttribute="centerX" secondItem="XYx-0h-gd1" secondAttribute="centerX" id="DgV-iI-KlK"/>
+                            <constraint firstItem="SWh-cd-yhf" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" id="Efx-am-NTQ"/>
                             <constraint firstItem="l2x-f2-7GC" firstAttribute="top" secondItem="yMu-z0-Byr" secondAttribute="bottom" constant="20" symbolic="YES" id="Hce-i3-MIv"/>
-                            <constraint firstItem="SWh-cd-yhf" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" constant="20" symbolic="YES" id="Mew-yo-f51"/>
+                            <constraint firstAttribute="bottom" secondItem="SWh-cd-yhf" secondAttribute="bottom" id="Kpd-Zm-0iF"/>
                             <constraint firstItem="s6T-o9-ICu" firstAttribute="top" secondItem="Ag1-hT-W8I" secondAttribute="bottom" constant="8" symbolic="YES" id="O9Q-wO-iAv"/>
                             <constraint firstAttribute="trailing" secondItem="4E1-pI-e5i" secondAttribute="trailing" constant="20" symbolic="YES" id="QCt-2t-Hmj"/>
                             <constraint firstAttribute="trailing" secondItem="6Np-gQ-tqY" secondAttribute="trailing" constant="20" symbolic="YES" id="QHZ-fG-XLN"/>
                             <constraint firstItem="s6T-o9-ICu" firstAttribute="leading" secondItem="l2x-f2-7GC" secondAttribute="leading" id="QMi-U9-d5J"/>
+                            <constraint firstItem="SWh-cd-yhf" firstAttribute="centerX" secondItem="6Np-gQ-tqY" secondAttribute="centerX" id="RdN-Za-xhT"/>
                             <constraint firstItem="XYx-0h-gd1" firstAttribute="centerY" secondItem="vur-26-do4" secondAttribute="centerY" id="Wcy-E6-cF2"/>
                             <constraint firstItem="l2x-f2-7GC" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" constant="20" symbolic="YES" id="Zc6-Kg-YY2"/>
                             <constraint firstAttribute="trailing" secondItem="Ew5-8D-eyG" secondAttribute="trailing" constant="20" symbolic="YES" id="cXd-23-WuU"/>
                             <constraint firstItem="vur-26-do4" firstAttribute="top" secondItem="4E1-pI-e5i" secondAttribute="bottom" constant="8" symbolic="YES" id="jYl-Wo-Xve"/>
                             <constraint firstItem="Ag1-hT-W8I" firstAttribute="top" secondItem="l2x-f2-7GC" secondAttribute="bottom" constant="8" symbolic="YES" id="jcu-3B-3fo"/>
                             <constraint firstItem="6Np-gQ-tqY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ew5-8D-eyG" secondAttribute="bottom" priority="326" constant="8" symbolic="YES" id="kho-qv-u9r"/>
+                            <constraint firstItem="SWh-cd-yhf" firstAttribute="top" secondItem="6Np-gQ-tqY" secondAttribute="bottom" constant="40" id="lMX-74-cS3"/>
                             <constraint firstItem="4E1-pI-e5i" firstAttribute="leading" secondItem="CZO-1e-0bq" secondAttribute="leading" constant="20" symbolic="YES" id="mFb-cQ-0DF"/>
                             <constraint firstItem="Ag1-hT-W8I" firstAttribute="leading" secondItem="l2x-f2-7GC" secondAttribute="leading" id="rG7-VE-4UH"/>
-                            <constraint firstAttribute="trailing" secondItem="SWh-cd-yhf" secondAttribute="trailing" constant="20" symbolic="YES" id="tcH-o1-htg"/>
-                            <constraint firstItem="SWh-cd-yhf" firstAttribute="top" secondItem="6Np-gQ-tqY" secondAttribute="bottom" constant="40" id="vJu-hA-ktT"/>
-                            <constraint firstItem="Qu0-YT-rvs" firstAttribute="top" secondItem="SWh-cd-yhf" secondAttribute="bottom" id="x87-Yx-E2c"/>
                         </constraints>
                         <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -261,7 +261,7 @@
                         <viewControllerLayoutGuide type="top" id="C69-Bk-fqZ"/>
                         <viewControllerLayoutGuide type="bottom" id="arm-zQ-yHw"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleAspectFill" verticalCompressionResistancePriority="246" id="wZh-05-bny">
+                    <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="246" id="wZh-05-bny">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
