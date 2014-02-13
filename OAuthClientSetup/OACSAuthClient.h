@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFOAuth2Client.h"
+#import "OACSNetStatusHelper.h"
 
 @interface OACSAuthClient : NSObject
 
@@ -23,7 +24,7 @@
 
 - (OACSAuthClient *)initWithConfigurationAt: (NSString *)configPath archiveAt:(NSString *)archivePath;
 - (void)archiveTo:(NSString *)archivePath;
-- (void)observeNetworkAvailabilityChanges: (NSObject *)observer;
+- (void)observeNetworkAvailabilityChanges: (OACSNetStatusHelper *)observer;
 - (AFNetworkReachabilityStatus)networkAvailable;
 
 - (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;

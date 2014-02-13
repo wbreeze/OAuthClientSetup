@@ -58,8 +58,8 @@
     [self.password setDelegate:self];
     [self.userName setDelegate:self];
     self.statusHelper = [[OACSNetStatusHelper new] initWithLabel:self.connectNetLabel
-                                                  statusCallback:^(BOOL status){
-                                                      [self.connectButton setEnabled:status];
+                                                  statusCallback:^(BOOL isEnabled){
+                                                      [self.connectButton setEnabled:isEnabled];
                                                   }];
     [self.client observeNetworkAvailabilityChanges:self.statusHelper];
     [self.statusHelper updateStatus:[self.client networkAvailable]];

@@ -67,11 +67,10 @@
     }
 }
 
-- (void)observeNetworkAvailabilityChanges: (NSObject *)observer {
-    [self.httpClient addObserver:observer
-                      forKeyPath:@"networkReachabilityStatus"
-                         options:NSKeyValueObservingOptionNew
-                         context:NULL];
+- (void)observeNetworkAvailabilityChanges: (OACSNetStatusHelper *)observer {
+    [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [observer updateStatus:status];
+    }];
 }
 
 - (AFNetworkReachabilityStatus) networkAvailable {
