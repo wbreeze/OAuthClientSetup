@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>base_url</key>
+	<string>http://172.20.10.2:3000/</string>
+	<key>callback_url</key>
+	<string>http://172.20.10.2:3000/users/auth/doorkeeper/callback</string>
+	<key>token_path</key>
+	<string>oauth/token</string>
+	<key>auth_path</key>
+	<string>oauth/authorize</string>
+	<key>client_secret</key>
+	<string>d6ea27703957b69939b8104ed4524595e210cd2e79af587744a7eb6e58f5b3d2</string>
+	<key>client_key</key>
+	<string>9b36d8c0db59eff5038aea7a417d73e69aea75b41aac771816d2ef1b3109cc2f</string>
+</dict>
+</plist>

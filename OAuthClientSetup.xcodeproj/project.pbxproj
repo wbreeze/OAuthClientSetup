@@ -11,6 +11,7 @@
 		680BD63118A3082700F943A4 /* OACSAuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 680BD63018A3082700F943A4 /* OACSAuthClient.m */; };
 		680BD63218A3082700F943A4 /* OACSAuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 680BD63018A3082700F943A4 /* OACSAuthClient.m */; };
 		68946BEC18AD7DFD00F39A64 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68946BEB18AD7DFD00F39A64 /* oauth_setup.plist */; };
+		68946BEE18ADD87500F39A64 /* oauth_setup_local_ip.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68946BED18ADD87500F39A64 /* oauth_setup_local_ip.plist */; };
 		68C41A3D1888CEC5006F3235 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C41A3C1888CEC5006F3235 /* Foundation.framework */; };
 		68C41A3F1888CEC5006F3235 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C41A3E1888CEC5006F3235 /* CoreGraphics.framework */; };
 		68C41A411888CEC5006F3235 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C41A401888CEC5006F3235 /* UIKit.framework */; };
@@ -54,6 +55,7 @@
 		680BD62F18A3082700F943A4 /* OACSAuthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthClient.h; sourceTree = "<group>"; };
 		680BD63018A3082700F943A4 /* OACSAuthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthClient.m; sourceTree = "<group>"; };
 		68946BEB18AD7DFD00F39A64 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
+		68946BED18ADD87500F39A64 /* oauth_setup_local_ip.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_local_ip.plist; sourceTree = "<group>"; };
 		68C41A391888CEC5006F3235 /* OAuthClientSetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuthClientSetup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C41A3C1888CEC5006F3235 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68C41A3E1888CEC5006F3235 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,6 +159,7 @@
 				68C41A76188A0385006F3235 /* oauth_setup_localhost.plist */,
 				68946BEB18AD7DFD00F39A64 /* oauth_setup.plist */,
 				68C41A9A18909BF4006F3235 /* oauth_setup_herokuapp.plist */,
+				68946BED18ADD87500F39A64 /* oauth_setup_local_ip.plist */,
 				68C41A4B1888CEC5006F3235 /* OACSAppDelegate.h */,
 				68C41A4C1888CEC5006F3235 /* OACSAppDelegate.m */,
 				680BD62F18A3082700F943A4 /* OACSAuthClient.h */,
@@ -301,6 +304,7 @@
 				68C41A77188A0385006F3235 /* oauth_setup_localhost.plist in Resources */,
 				68C41A9B18909BF4006F3235 /* oauth_setup_herokuapp.plist in Resources */,
 				68C41A471888CEC5006F3235 /* InfoPlist.strings in Resources */,
+				68946BEE18ADD87500F39A64 /* oauth_setup_local_ip.plist in Resources */,
 				68C41A8D188A29AF006F3235 /* Podfile in Resources */,
 				68C41A4F1888CEC5006F3235 /* Images.xcassets in Resources */,
 			);
