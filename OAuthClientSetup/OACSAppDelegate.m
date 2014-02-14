@@ -11,6 +11,7 @@
 
 @implementation OACSAppDelegate
 
+#if DEBUG
 // Pony Debugger instruments application network traffic monitoring
 // via Pony server, both from the people at Square
 - (void)configureDebug {
@@ -19,6 +20,7 @@
     [debugger enableNetworkTrafficDebugging];
     [debugger forwardAllNetworkTraffic];
 }
+#endif
 
 // credentials archived in user space application support directory
 - (NSString *)applicationCredentialFilePath {
@@ -59,7 +61,9 @@
         NSObject <OACSAuthClientConsumer> *childView = tabViews[i];
         [childView setAuthClient:self.client];
     }
+#if DEBUG
     [self configureDebug];
+#endif
     return YES;
 }
 
