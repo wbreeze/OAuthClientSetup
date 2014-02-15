@@ -64,7 +64,7 @@
                          [self.workinOnIt stopAnimating];
                          [self.profilesButton setEnabled:YES];
                          NSArray *profiles = (NSArray *)response;
-                         NSString *showProfiles = [NSString stringWithFormat:@"%d profiles.  First is %@", profiles.count, profiles[0]];
+                         NSString *showProfiles = [NSString stringWithFormat:@"%lu profiles.  First is %@", (unsigned long)profiles.count, profiles[0]];
                          [self.resultText setText:showProfiles];
                      } onFailure:^(NSString *localizedDescription) {
                          [self.workinOnIt stopAnimating];
