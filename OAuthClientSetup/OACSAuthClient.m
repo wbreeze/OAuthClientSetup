@@ -159,7 +159,7 @@
         description = @"Application is no longer authorized";
     }
     else {
-        description = [NSString stringWithFormat:@"HTTP Response error code %d", code];
+        description = [NSString stringWithFormat:@"HTTP Response error code %ld", (long)code];
     }
     return description;
 }
