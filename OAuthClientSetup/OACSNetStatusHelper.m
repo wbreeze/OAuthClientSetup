@@ -36,17 +36,6 @@
     }
 }
 
-// acts as key value observer for AFHTTPClient networkReachabilityStatus
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if ([keyPath isEqual:@"networkReachabilityStatus"]) {
-        AFHTTPClient *netClient = (AFHTTPClient *)object;
-        [self updateStatus:[netClient networkReachabilityStatus]];
-    }
-}
-
 - (OACSNetStatusHelper *)initWithLabel:(UILabel *)label statusCallback:(StatusUpdate)updateStatus
 {
     self = [self init];
