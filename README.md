@@ -51,21 +51,21 @@ For API usage, the `OACSapiViewController` provides two buttons that initiate AP
 
 ## Some screen shots
 
-![`OACSConnectViewController`](blob/master/OACSConnectViewController.png)
+![`OACSConnectViewController`](OACSConnectViewController.png)
 
-![`OACSAuthorizedViewController`](blob/master/OACSAuthorizedViewController.png)
+![`OACSAuthorizedViewController`](OACSAuthorizedViewController.png)
 
-![`OACSapiViewController`](blob/master/OACSapiViewController.png)
+![`OACSapiViewController`](OACSapiViewController.png)
 
 ## Support and License
 
 This is unsupported, however:
 
 - If you find a bug, please write it up in the issues list so that others may know about it or fix it.  
-We might fix it, no promises.
+We might fix it, no promises.  Your fixes are welcome.
 - If you fork, and do something useful, your pull request is welcome.
 
-Only please don't pester us with a million questions about how to implement an OAuth 2 client.  
+Only please refrain from posting and emailing questions about how to implement an OAuth 2 client.  
 It is tough and not so tough.
 Many little details to learn and implement.
 We hope this sample code will be helpful for you.
