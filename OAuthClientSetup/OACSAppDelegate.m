@@ -18,20 +18,20 @@
 //  limitations under the License.
 
 #import "OACSAppDelegate.h"
-#import "PDDebugger.h"
+//#import "PDDebugger.h"
 
 @implementation OACSAppDelegate
 
-#if DEBUG
-// Pony Debugger instruments application network traffic monitoring
-// via Pony server, both from the people at Square
-- (void)configureDebug {
-    PDDebugger * debugger = [PDDebugger defaultInstance];
-    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
-    [debugger enableNetworkTrafficDebugging];
-    [debugger forwardAllNetworkTraffic];
-}
-#endif
+//#if DEBUG
+//// Pony Debugger instruments application network traffic monitoring
+//// via Pony server, both from the people at Square
+//- (void)configureDebug {
+//    PDDebugger * debugger = [PDDebugger defaultInstance];
+//    [debugger connectToURL:[NSURL URLWithString:@"ws://localhost:9000/device"]];
+//    [debugger enableNetworkTrafficDebugging];
+//    [debugger forwardAllNetworkTraffic];
+//}
+//#endif
 
 // credentials archived in user space application support directory
 - (NSString *)applicationCredentialFilePath {
@@ -72,9 +72,9 @@
         NSObject <OACSAuthClientConsumer> *childView = tabViews[i];
         [childView setAuthClient:self.client];
     }
-#if DEBUG
-    [self configureDebug];
-#endif
+//#if DEBUG
+//    [self configureDebug];
+//#endif
     return YES;
 }
 
