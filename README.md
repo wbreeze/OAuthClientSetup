@@ -51,10 +51,13 @@ For API usage, the `OACSapiViewController` provides two buttons that initiate AP
 
 ## Some screen shots
 
+### OACSConnectViewController
 ![`OACSConnectViewController`](OACSConnectViewController.png)
 
+### OACSAuthorizedViewController
 ![`OACSAuthorizedViewController`](OACSAuthorizedViewController.png)
 
+### OACSapiViewController
 ![`OACSapiViewController`](OACSapiViewController.png)
 
 ## Support and License
