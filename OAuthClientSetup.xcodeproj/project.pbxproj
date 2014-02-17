@@ -10,6 +10,9 @@
 		57B1E0496A514DA3A5ADE013 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AEE93CDE784A6C9B4C7AB4 /* libPods.a */; };
 		680BD63118A3082700F943A4 /* OACSAuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 680BD63018A3082700F943A4 /* OACSAuthClient.m */; };
 		680BD63218A3082700F943A4 /* OACSAuthClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 680BD63018A3082700F943A4 /* OACSAuthClient.m */; };
+		683F320218B2B199003641BB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 683F320118B2B199003641BB /* README.md */; };
+		683F320418B2BA71003641BB /* NOTICE in Resources */ = {isa = PBXBuildFile; fileRef = 683F320318B2BA71003641BB /* NOTICE */; };
+		683F320618B2C250003641BB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 683F320518B2C250003641BB /* LICENSE */; };
 		68946BEC18AD7DFD00F39A64 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68946BEB18AD7DFD00F39A64 /* oauth_setup.plist */; };
 		68946BEE18ADD87500F39A64 /* oauth_setup_local_ip.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68946BED18ADD87500F39A64 /* oauth_setup_local_ip.plist */; };
 		68C41A3D1888CEC5006F3235 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C41A3C1888CEC5006F3235 /* Foundation.framework */; };
@@ -54,6 +57,9 @@
 		61AEE93CDE784A6C9B4C7AB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		680BD62F18A3082700F943A4 /* OACSAuthClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthClient.h; sourceTree = "<group>"; };
 		680BD63018A3082700F943A4 /* OACSAuthClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthClient.m; sourceTree = "<group>"; };
+		683F320118B2B199003641BB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		683F320318B2BA71003641BB /* NOTICE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE; sourceTree = "<group>"; };
+		683F320518B2C250003641BB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		68946BEB18AD7DFD00F39A64 /* oauth_setup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup.plist; sourceTree = "<group>"; };
 		68946BED18ADD87500F39A64 /* oauth_setup_local_ip.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = oauth_setup_local_ip.plist; sourceTree = "<group>"; };
 		68C41A391888CEC5006F3235 /* OAuthClientSetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuthClientSetup.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +124,9 @@
 		68C41A301888CEC5006F3235 = {
 			isa = PBXGroup;
 			children = (
+				683F320118B2B199003641BB /* README.md */,
+				683F320318B2BA71003641BB /* NOTICE */,
+				683F320518B2C250003641BB /* LICENSE */,
 				68C41A7D188A29AF006F3235 /* Gemfile */,
 				68C41A88188A29AF006F3235 /* Podfile */,
 				68C41A78188A0726006F3235 /* .gitignore */,
@@ -297,13 +306,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				683F320218B2B199003641BB /* README.md in Resources */,
 				68C41A89188A29AF006F3235 /* Gemfile in Resources */,
+				683F320618B2C250003641BB /* LICENSE in Resources */,
 				68946BEC18AD7DFD00F39A64 /* oauth_setup.plist in Resources */,
 				68C41A79188A0726006F3235 /* .gitignore in Resources */,
 				68C41A92188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard in Resources */,
 				68C41A77188A0385006F3235 /* oauth_setup_localhost.plist in Resources */,
 				68C41A9B18909BF4006F3235 /* oauth_setup_herokuapp.plist in Resources */,
 				68C41A471888CEC5006F3235 /* InfoPlist.strings in Resources */,
+				683F320418B2BA71003641BB /* NOTICE in Resources */,
 				68946BEE18ADD87500F39A64 /* oauth_setup_local_ip.plist in Resources */,
 				68C41A8D188A29AF006F3235 /* Podfile in Resources */,
 				68C41A4F1888CEC5006F3235 /* Images.xcassets in Resources */,
