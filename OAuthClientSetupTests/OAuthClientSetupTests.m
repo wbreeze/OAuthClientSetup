@@ -18,6 +18,9 @@
 //  limitations under the License.
 
 #import <XCTest/XCTest.h>
+#import "OACSAuthClient.h"
+#import "OHHTTPStubs.h"
+#import "OHHTTPStubsResponse+JSON.h"
 
 @interface OAuthClientSetupTests : XCTestCase
 
@@ -25,21 +28,41 @@
 
 @implementation OAuthClientSetupTests
 
+OACSAuthClient *client;
+
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    client = [[OACSAuthClient alloc] initWithConfigurationAt:@"oauth_setup_localhost.plist" archiveAt:@"testArchive"];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testClientCredentialsAuth
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"localhost"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        return [OHHTTPStubsResponse
+                responseWithJSONObject:@{
+                    @"access_token":@"3c62d12338010ed8c0ad71cffba57d63cc7c7b6b045dc7779268b0eb497bcd",
+                    @"token_type":@"bearer",
+                    @"expires_in":@300,
+                    @"refresh_token":@"0a3ac4e725ad92f8a4a1762233a368beda7f0b3301f095495b17679081147669",
+                    @"scope":@"public"
+                }
+                statusCode:200
+                headers:@{@"Content-Type":@"text/json"}];
+    }];
+    [client authorizeUser:@"user" password:@"pwd"
+                onSuccess:^() {
+                }
+                onFailure:^(NSString *localizedErrorDescription) {
+                    XCTFail(@"Expected success, got %@", localizedErrorDescription);
+                }];
 }
 
 @end

@@ -1,4 +1,7 @@
 platform :ios, '5.0'
-pod 'tuneup_js'
+
 pod 'AFOAuth2Client'
-pod 'OHHTTPStubs'
+pod 'tuneup_js'
+target :OAuthClientSetupTests, :exclusive => true do
+  pod 'OHHTTPStubs'
+end
