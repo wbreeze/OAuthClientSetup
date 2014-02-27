@@ -146,7 +146,7 @@
                  if (400 <= response.statusCode && response.statusCode < 500) {
                      [self resignAuthorization];
                  }
-                 failure([self responseCodeInterpretation:response.statusCode]);
+                 failure(error.userInfo[@"NSLocalizedDescription"]);
              }
          }];
         [self.httpClient enqueueHTTPRequestOperation:operation];
@@ -161,20 +161,6 @@
 
 #pragma mark private
 
-- (NSString *)responseCodeInterpretation:(NSInteger)code {
-    NSString *description;
-    if (500 <= code){
-        description = @"Unable to connect";
-    }
-    else if (400 <= code) {
-        description = @"Application is no longer authorized";
-    }
-    else {
-        description = [NSString stringWithFormat:@"HTTP Response error code %ld", (long)code];
-    }
-    return description;
-}
-
 - (void)refreshAndRetry:(NSString *)method path:(NSString*)path parameters:(NSDictionary *)parameters onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
     if (self.creds.refreshToken) {
         [self.oauthClient
@@ -187,8 +173,11 @@
              [self authorizedRequest:method path:path parameters:parameters onSuccess:success onFailure:failure retry:NO];
          }
          failure:^(NSError *error) {
-             [self resignAuthorization];
-             failure(@"Application is no longer authorized");
+             NSInteger code = error.code;
+             if (400 <= code && code < 500) {
+                [self resignAuthorization];
+             }
+             failure(error.userInfo[@"NSLocalizedDescription"]);
          }];
     }
     else {
