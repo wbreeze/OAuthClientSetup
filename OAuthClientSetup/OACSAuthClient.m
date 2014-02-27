@@ -217,7 +217,7 @@
                                             format:NULL
                                             errorDescription:&errorDesc];
     if (!config) {
-        NSLog(@"OACSAuthClient error reading config is '%@'", errorDesc);
+        NSLog(@"OACSAuthClient error reading config %@ is '%@'", configPath, errorDesc);
     }
     return config;
 }
