@@ -88,6 +88,14 @@
     return [self.httpClient networkReachabilityStatus];
 }
 
+- (BOOL)isAuthorized {
+    return self.creds && self.oauthClient;
+}
+
+- (BOOL)isConfigured {
+    return self.oauthClient && self.auth_path && self.token_path && self.callback_url;
+}
+
 // curl -F grant_type=password -F username=user@example.com -F password=doorkeeper http://localhost:3000/oauth/token
 //{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
 - (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {

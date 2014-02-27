@@ -55,13 +55,13 @@ https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPho
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.client.creds && self.client.oauthClient) {
+    if (self.client.isAuthorized) {
         OACSAuthorizedViewController *avc = self.authorizedVC;
         [self addChildViewController:avc];
         [self.view addSubview:avc.view];
         [avc didMoveToParentViewController:self];
     }
-    else if (self.client.oauthClient && self.client.auth_path && self.client.token_path && self.client.callback_url) {
+    else if (self.client.isConfigured) {
         OACSConnectViewController *cvc = self.connectVC;
         [self addChildViewController:cvc];
         [self.view addSubview:cvc.view];

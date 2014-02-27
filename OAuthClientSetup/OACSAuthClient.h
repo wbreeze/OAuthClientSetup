@@ -37,6 +37,8 @@
 - (void)archiveTo:(NSString *)archivePath;
 - (void)observeNetworkAvailabilityChanges: (OACSNetStatusHelper *)observer;
 - (AFNetworkReachabilityStatus)networkAvailable;
+- (BOOL) isAuthorized;
+- (BOOL) isConfigured;
 
 - (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
 - (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(NSString *))failure;
