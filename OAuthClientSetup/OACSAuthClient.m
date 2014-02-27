@@ -125,7 +125,10 @@
                 onSuccess:(void (^)(id))success
                 onFailure:(void (^)(NSString *))failure
                     retry:(BOOL) doRetry {
-    if (self.creds.expired && doRetry) {
+    if (!self.creds) {
+        failure(@"Application is not authorized");
+    }
+    else if (self.creds.expired && doRetry) {
         [self refreshAndRetry:method path:path parameters:parameters onSuccess:success onFailure:failure];
     }
     else {
@@ -173,15 +176,11 @@
              [self authorizedRequest:method path:path parameters:parameters onSuccess:success onFailure:failure retry:NO];
          }
          failure:^(NSError *error) {
-             NSInteger code = error.code;
-             if (400 <= code && code < 500) {
-                [self resignAuthorization];
-             }
-             failure(error.userInfo[@"NSLocalizedDescription"]);
+                 failure(@"Failed to authorize");
          }];
     }
     else {
-        failure(@"Application is no longer authorized");
+        failure(@"Application is not authorized");
     }
 }
 
