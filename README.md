@@ -49,6 +49,26 @@ For authorizaton, the `OACSConfigureViewController` checks the configuration and
 
 For API usage, the `OACSapiViewController` provides two buttons that initiate API calls and display all or a portion of the returned data.
 
+When you set up your project, you must include the SystemConfiguration Framework.
+To do that with XCode5, on your project settings, with the "General" tab selected, scroll to the bottom to
+"Linked Frameworks and Libraries."  If SystemConfiguration is not already there, click the little plus icon,
+then select SystemConfiguration.framework from the popup dialog and click "Add."
+
+Also when you set up your project, you must have `#import <SystemConfiguration/SystemConfiguration.h>`
+within your <ProjectName>-Prefix.pch file.  Look at this project's OAuthClientSetup-Prefix.pch within the
+Supporting Files directory.  It has the following:
+
+```
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+#endif
+
+```
+
+You must ensure that the SystemConfiguration.h import is present for your project.
+
 ## Some screen shots
 
 ### OACSConnectViewController
