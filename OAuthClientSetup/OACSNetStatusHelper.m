@@ -1,5 +1,5 @@
 //
-//  OACSNetStatusViewController.m
+//  OACSNetStatusHelper.m
 //  OAuthClientSetup
 //
 //  Created by Douglas Lovell on 1/31/14.

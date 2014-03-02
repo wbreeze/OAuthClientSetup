@@ -1,5 +1,5 @@
 //
-//  OACSNetStatusViewController.h
+//  OACSNetStatusHelper.h
 //  OAuthClientSetup
 //
 //  Created by Douglas Lovell on 1/31/14.
@@ -17,7 +17,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <UIKit/UIKit.h>
 #import "AFHTTPClient.h"
 
 typedef void(^StatusUpdate)(BOOL status);
