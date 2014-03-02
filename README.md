@@ -55,7 +55,7 @@ To do that with XCode5, on your project settings, with the "General" tab selecte
 then select SystemConfiguration.framework from the popup dialog and click "Add."
 
 Also when you set up your project, you must have `#import <SystemConfiguration/SystemConfiguration.h>`
-within your <ProjectName>-Prefix.pch file.  Look at this project's OAuthClientSetup-Prefix.pch within the
+within your ProjectName-Prefix.pch file.  Look at this project's OAuthClientSetup-Prefix.pch within the
 Supporting Files directory.  It has the following:
 
 ```
