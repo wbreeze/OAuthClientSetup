@@ -49,6 +49,8 @@ For authorizaton, the `OACSConfigureViewController` checks the configuration and
 
 For API usage, the `OACSapiViewController` provides two buttons that initiate API calls and display all or a portion of the returned data.
 
+### SystemConfiguration Framework
+
 When you set up your project, you must include the SystemConfiguration Framework.
 To do that with XCode5, on your project settings, with the "General" tab selected, scroll to the bottom to
 "Linked Frameworks and Libraries."  If SystemConfiguration is not already there, click the little plus icon,
@@ -68,6 +70,12 @@ Supporting Files directory.  It has the following:
 ```
 
 You must ensure that the SystemConfiguration.h import is present for your project.
+
+### Saving and restoring the authorization token
+
+The OACSAppDelegate class implements `applicationDidEnterBackground` and `applicationWillEnterForeground`
+methods to save and restore the OAuth client token.  If you do not do so, then the user will have to reestablish
+authorization every time the application starts or returns from the background state.
 
 ## Some screen shots
 
