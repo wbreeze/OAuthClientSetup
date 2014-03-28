@@ -36,6 +36,10 @@ We found we wanted something more up-level than found there currently.
 
 The `OACSAuthClient` class provides most of the useful function.  Copy paste is easiest.  Don't forget the copyright and license.
 
+The `OACSAuthOpAF` class provides an AFNetworking operation for making an authorized request.  See `OACSapiViewController` for sample usage.
+
+The `OACSAuthOpRK` class provides a RestKit `RKObjectManager` operation for making an authorized request.  It will not compile without [RestKit](https://github.com/RestKit/RestKit).
+
 The `OACSNetStatusHelper` class might be useful if your client monitors and displays network status.  If your application is internationalized, you'll have to modify accordingly.  An i18n contribution and translations are welcome.
 
 The UI views and controllers are as generic as possible and likely useless to you as anything other than starting points.  Find short descriptions as follows.
