@@ -21,6 +21,27 @@
 #import "AFOAuth2Client.h"
 #import "OACSNetStatusHelper.h"
 
+@protocol AuthOp
+// queue the authorized network operation using the authToken.
+// After success or failure, store the results and execute the callback.
+// Operation may be called a second time, with a different authToken,
+// if callback finds wasSuccessful NO, hasHTTPStatus YES, httpStatusCode 401
+- (void)queueOpWith:(NSString*)authToken callback:(void (^)())callback;
+
+// whether the operation returned an HTTP status code
+@property (readwrite) BOOL hasHTTPStatus;
+
+// available if hasHTTPStatus returns YES
+@property (readwrite) long httpStatusCode;
+
+// whether the operation succeeded
+@property (readwrite) BOOL wasSuccessful;
+
+// error available if wasSuccessful returns NO
+@property (strong, readwrite) NSError *error;
+
+@end
+
 @interface OACSAuthClient : NSObject
 
 @property (strong, nonatomic) AFOAuth2Client *oauthClient;
@@ -39,9 +60,8 @@
 - (AFNetworkReachabilityStatus)networkAvailable;
 - (BOOL) isAuthorized;
 - (BOOL) isConfigured;
-
 - (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
-- (void)authorizedGet:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(NSString *))failure;
+- (void)authorizedOp:(id<AuthOp>)op onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
 - (void)resignAuthorization;
 
 @end

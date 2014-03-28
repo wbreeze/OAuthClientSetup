@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #import "OACSapiViewController.h"
+#import "OACSAuthOpAF.h"
 
 @interface OACSapiViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *meButton;
@@ -54,34 +55,43 @@
 {
     [self.meButton setEnabled:NO];
     [self.workinOnIt startAnimating];
-    [self.client authorizedGet:@"api/v1/me.json" parameters:nil
-                     onSuccess:^(NSDictionary *response) {
-                         [self.workinOnIt stopAnimating];
-                         [self.meButton setEnabled:YES];
-                         [self.resultText setText:[response description]];
-                     } onFailure:^(NSString *localizedDescription) {
-                         [self.workinOnIt stopAnimating];
-                         [self.meButton setEnabled:YES];
-                         [self.resultText setText:localizedDescription];
-                     }];
+    OACSAuthOpAF *op = [[OACSAuthOpAF alloc] initWithAFHTTPClient:[self.client httpClient]
+                                                    requestMethod:@"GET"
+                                                          forPath:@"api/v1/me.json"
+                                                   withParameters:nil];
+    [self.client authorizedOp:op
+                    onSuccess:^() {
+                        [self.workinOnIt stopAnimating];
+                        [self.meButton setEnabled:YES];
+                        [self.resultText setText:[op.responseObject description]];
+                    }
+                    onFailure:^(NSString *localizedDescription) {
+                        [self.workinOnIt stopAnimating];
+                        [self.meButton setEnabled:YES];
+                        [self.resultText setText:localizedDescription];
+                    }];
 }
 
 - (IBAction)sendProfilesRequest
 {
     [self.profilesButton setEnabled:NO];
     [self.workinOnIt startAnimating];
-    [self.client authorizedGet:@"api/v1/profiles.json" parameters:nil
-                     onSuccess:^(NSDictionary *response) {
-                         [self.workinOnIt stopAnimating];
-                         [self.profilesButton setEnabled:YES];
-                         NSArray *profiles = (NSArray *)response;
-                         NSString *showProfiles = [NSString stringWithFormat:@"%lu profiles.  First is %@", (unsigned long)profiles.count, profiles[0]];
-                         [self.resultText setText:showProfiles];
-                     } onFailure:^(NSString *localizedDescription) {
-                         [self.workinOnIt stopAnimating];
-                         [self.profilesButton setEnabled:YES];
-                         [self.resultText setText:localizedDescription];
-                     }];
+    OACSAuthOpAF *op = [[OACSAuthOpAF alloc] initWithAFHTTPClient:[self.client httpClient]
+                                                    requestMethod:@"GET"
+                                                          forPath:@"api/v1/profiles.json"
+                                                   withParameters:nil];
+    [self.client authorizedOp:op
+                    onSuccess:^(NSDictionary *response) {
+                        [self.workinOnIt stopAnimating];
+                        [self.profilesButton setEnabled:YES];
+                        NSArray *profiles = (NSArray *)[op responseObject];
+                        NSString *showProfiles = [NSString stringWithFormat:@"%lu profiles.  First is %@", (unsigned long)profiles.count, profiles[0]];
+                        [self.resultText setText:showProfiles];
+                    } onFailure:^(NSString *localizedDescription) {
+                        [self.workinOnIt stopAnimating];
+                        [self.profilesButton setEnabled:YES];
+                        [self.resultText setText:localizedDescription];
+                    }];
 }
 
 #pragma mark OACSAuthClientConsumer

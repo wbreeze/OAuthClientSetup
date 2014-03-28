@@ -39,6 +39,7 @@
 		68C41AA8189B8894006F3235 /* OACSNetStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */; };
 		68C41AB1189C5643006F3235 /* OACSapiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AB0189C5643006F3235 /* OACSapiViewController.m */; };
 		68C41AB2189C5643006F3235 /* OACSapiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AB0189C5643006F3235 /* OACSapiViewController.m */; };
+		68D3DFA118E554550002814B /* OACSAuthOpAF.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D3DFA018E554550002814B /* OACSAuthOpAF.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,10 @@
 		68C41AA6189B8894006F3235 /* OACSNetStatusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSNetStatusHelper.m; sourceTree = "<group>"; };
 		68C41AAF189C5643006F3235 /* OACSapiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSapiViewController.h; sourceTree = "<group>"; };
 		68C41AB0189C5643006F3235 /* OACSapiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSapiViewController.m; sourceTree = "<group>"; };
+		68D3DF9C18E5526E0002814B /* OACSAuthOpRK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthOpRK.h; sourceTree = "<group>"; };
+		68D3DF9D18E5526E0002814B /* OACSAuthOpRK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthOpRK.m; sourceTree = "<group>"; };
+		68D3DF9F18E554550002814B /* OACSAuthOpAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthOpAF.h; sourceTree = "<group>"; };
+		68D3DFA018E554550002814B /* OACSAuthOpAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthOpAF.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +185,10 @@
 				68C41A4C1888CEC5006F3235 /* OACSAppDelegate.m */,
 				680BD62F18A3082700F943A4 /* OACSAuthClient.h */,
 				680BD63018A3082700F943A4 /* OACSAuthClient.m */,
+				68D3DF9F18E554550002814B /* OACSAuthOpAF.h */,
+				68D3DFA018E554550002814B /* OACSAuthOpAF.m */,
+				68D3DF9C18E5526E0002814B /* OACSAuthOpRK.h */,
+				68D3DF9D18E5526E0002814B /* OACSAuthOpRK.m */,
 				68C41A97188B8AF4006F3235 /* OACSAuthorizedViewController.h */,
 				68C41A98188B8B21006F3235 /* OACSAuthorizedViewController.m */,
 				68C41A6B1888D05E006F3235 /* OACSConnectViewController.h */,
@@ -283,7 +292,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OACS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Telegraphy Interactive";
 				TargetAttributes = {
 					68C41A531888CEC5006F3235 = {
@@ -428,6 +437,7 @@
 				68C41AA7189B8894006F3235 /* OACSNetStatusHelper.m in Sources */,
 				68C41A491888CEC5006F3235 /* main.m in Sources */,
 				68C41A99188B8B21006F3235 /* OACSAuthorizedViewController.m in Sources */,
+				68D3DFA118E554550002814B /* OACSAuthOpAF.m in Sources */,
 				68C41A96188B8930006F3235 /* OACSConfigureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,7 +486,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -529,7 +538,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -606,7 +614,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4FE621AD284178862C6589 /* Pods-OAuthClientSetupTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OAuthClientSetup.app/OAuthClientSetup";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -630,7 +637,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4FE621AD284178862C6589 /* Pods-OAuthClientSetupTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OAuthClientSetup.app/OAuthClientSetup";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
