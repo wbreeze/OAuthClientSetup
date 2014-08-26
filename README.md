@@ -10,27 +10,84 @@ according to [rfc6749](http://www.rfc-editor.org/rfc/rfc6749.txt) Section 4.3.
 - Clone the project using git.
 - Install the Pod dependencies found in the Podfile. `pod install`
 - Open the XCode workspace.  (The workspace, not the project.)
-- Copy one of the sample `oauth_setup` configuration files to `oauth_setup.plist.`
-- Edit `oauth_setup.plist.`
+- Copy one of the sample `oauth_setup` configuration files to `oauth_setup.plist,` likely `oauth_setup_localhost.plist`
+- Edit `oauth_setup.plist.`  You likely only need to change the client_secret, and client_key settings.
   - `base_url` is the url for an OAuth 2 authentication server.
   - `callback_url` is the client url for redirection after successful authentication.
   - `token_path` is the path appended to the base url for authentication server token management.
   - `auth_path` is the path appended to the base url for client authorization with the authentication server.
-  - `client_secret` is the secret allocated your client on the authentication server.
-  - `client_key` is the key identifier allocated your client on the authentiaction server.
+  - `client_secret` is the secret allocated your client on the authentication server, also known as
+  the "Secret".
+  - `client_key` is the key identifier allocated your client on the authentiaction server, also known as
+  the "Application ID".
 - Ready to run.
 
 ## Authentication server notes
-
-We are testing with this [sample authentication server]
-(https://github.com/telegraphy-interactive/doorkeeper-provider-app).
-The sample server requires a little Ruby on Rails knowledge to operate.
 
 This sample client does not currently work with the test server hosted by [applicake]
 (https://github.com/applicake/doorkeeper-provider-app)
 at [heroku]
 (http://doorkeeper-provider.herokuapp.com/)
 We found we wanted something more up-level than found there currently.
+
+In order to use it, you must clone that project and make a few changes. Do not follow the Doorkeeper install instructions to get the demo application running.
+Instead:
+
+1. Open the Gemfile and update the version of Doorkeeper to 1.4.0
+2. Ensure that you are using ruby 1.9.3 or later
+3. Run `bundle update`
+4. Edit `config/initializers/devise.rb` and do the following:
+4.1. Delete the line, `Devise.use_salt_as_remember_token`
+4.2. Revise the line that authenticates the resource owner
+```
+    # current_user || warden.authenticate!(:scope => :user)
+    request.env["warden"].user || User.where(:email => request.params[:username]).first
+```
+4.3. Revise the `resource_owner_from_credentials` method as follows:
+```
+resource_owner_from_credentials do
+    request.params[:user] = {:email => request.params[:username], :password => request.params[    :password]}
+    request.env["devise.allow_params_authentication"] = true
+    user = request.env["warden"].authenticate!(:scope => :user)
+    env['warden'].logout
+    user
+end
+```
+4.4. For testing, you'll want the access token to expire frequently
+```
+# Access token expiration time (default 2 hours)
+# access_token_expires_in 2.hours
+access_token_expires_in 1.minutes
+```
+5. Run `rake db:setup`
+6. Copy the client id and client secret output from `rake db:setup` into your OAuthClientSetup project file, `oauth_setup.plist`
+7. Create a migration to upgrade the Doorkeeper data tables, `rails g migration upgrade_doorkeeper_tables`
+8. Edit the migration as follows:
+```
+class UpgradeDoorkeeperTables < ActiveRecord::Migration
+  def up
+    change_column :oauth_applications, :redirect_uri, :text, null: false
+    change_column :oauth_access_grants, :redirect_uri, :text, null: false
+    change_column :oauth_access_tokens, :application_id, :integer, null: false
+  end
+
+  def down
+    change_column :oauth_applications, :redirect_uri, :string, null: false
+    change_column :oauth_access_grants, :redirect_uri, :string, null: false
+    change_column :oauth_access_tokens, :application_id, :integer
+  end
+end
+```
+9. Run the migration, `rake db:migrate`
+
+## Troubleshooting
+
+Ensure that you have the OAuth Application ID and Client Secret configured in the oauth_setup.plist file.
+When you have the sample provider app running, you can view these two keys with url,
+http://localhost:3000/oauth/applications/1
+
+Use the Connection tab of the application to log-in using client authentication.  The sample provider creates
+a sample user with EMail, "user@example.com" and password, "doorkeeper".
 
 ## Hints for using in your own iOS client application
 
