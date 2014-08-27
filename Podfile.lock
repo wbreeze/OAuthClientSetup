@@ -1,5 +1,5 @@
 PODS:
-  - AFNetworking (1.3.3)
+  - AFNetworking (1.3.4)
   - AFOAuth2Client (0.1.2):
     - AFNetworking (~> 1.3)
   - OHHTTPStubs (3.1.0)
@@ -11,9 +11,9 @@ DEPENDENCIES:
   - tuneup_js
 
 SPEC CHECKSUMS:
-  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
-  AFOAuth2Client: 579d6f298b0047dfd5a6eec6ab5b28c01f6b4547
-  OHHTTPStubs: d67c42c0212f0883ddb8592375aa0dc00dc50a36
-  tuneup_js: 87dae4e2342d84c30ebe3863331bd24c1a6527c0
+  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
+  AFOAuth2Client: 4f05d29e0a26c7ddf529dd7c4480af6ee1e982c6
+  OHHTTPStubs: 8b032ab399e356050010ed34613ee1761c6c8ae3
+  tuneup_js: 6ba936190de77550484b812b299739d75b9ed534
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
