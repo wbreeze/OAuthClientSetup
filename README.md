@@ -37,13 +37,13 @@ Instead:
 2. Ensure that you are using ruby 1.9.3 or later
 3. Run `bundle update`
 4. Edit `config/initializers/devise.rb` and do the following:
-4.1. Delete the line, `Devise.use_salt_as_remember_token`
-4.2. Revise the line that authenticates the resource owner
+   * Delete the line, `Devise.use_salt_as_remember_token`
+   * Revise the line that authenticates the resource owner
 ```
     # current_user || warden.authenticate!(:scope => :user)
     request.env["warden"].user || User.where(:email => request.params[:username]).first
 ```
-4.3. Revise the `resource_owner_from_credentials` method as follows:
+   * Revise the `resource_owner_from_credentials` method as follows:
 ```
 resource_owner_from_credentials do
     request.params[:user] = {:email => request.params[:username], :password => request.params[    :password]}
@@ -53,7 +53,7 @@ resource_owner_from_credentials do
     user
 end
 ```
-4.4. For testing, you'll want the access token to expire frequently
+   * For testing, you'll want the access token to expire frequently
 ```
 # Access token expiration time (default 2 hours)
 # access_token_expires_in 2.hours
