@@ -10,10 +10,19 @@ DEPENDENCIES:
   - OHHTTPStubs
   - tuneup_js
 
-SPEC CHECKSUMS:
-  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  AFOAuth2Client: 4f05d29e0a26c7ddf529dd7c4480af6ee1e982c6
-  OHHTTPStubs: 8b032ab399e356050010ed34613ee1761c6c8ae3
-  tuneup_js: 6ba936190de77550484b812b299739d75b9ed534
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AFOAuth2Client
+    - OHHTTPStubs
+    - tuneup_js
 
-COCOAPODS: 0.33.1
+SPEC CHECKSUMS:
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  AFOAuth2Client: ca9490461c522b6c4be37a26a3366c8d91856519
+  OHHTTPStubs: b7b9e6a5de5f324b7fafea4a5269ada5e4e156bc
+  tuneup_js: 6561e878a862f9b9a41625c6d5f086feb39b6845
+
+PODFILE CHECKSUM: 2f9be5dd0d6d1db101fa79f46baf39fccaa42514
+
+COCOAPODS: 1.5.3
