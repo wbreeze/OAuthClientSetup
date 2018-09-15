@@ -39,7 +39,6 @@
 		68C41AB1189C5643006F3235 /* OACSapiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AB0189C5643006F3235 /* OACSapiViewController.m */; };
 		68C41AB2189C5643006F3235 /* OACSapiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C41AB0189C5643006F3235 /* OACSapiViewController.m */; };
 		68D3DFA118E554550002814B /* OACSAuthOpAF.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D3DFA018E554550002814B /* OACSAuthOpAF.m */; };
-		6F10BC61214D4CAD00E4C031 /* oauth_setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F10BC60214D4CAD00E4C031 /* oauth_setup.plist */; };
 		BC2B3D5E52414CBCF2677E9F /* libPods-OAuthClientSetup.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B0628D128C2052B0773CF6D /* libPods-OAuthClientSetup.a */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +100,6 @@
 		68D3DF9D18E5526E0002814B /* OACSAuthOpRK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthOpRK.m; sourceTree = "<group>"; };
 		68D3DF9F18E554550002814B /* OACSAuthOpAF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OACSAuthOpAF.h; sourceTree = "<group>"; };
 		68D3DFA018E554550002814B /* OACSAuthOpAF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OACSAuthOpAF.m; sourceTree = "<group>"; };
-		6F10BC60214D4CAD00E4C031 /* oauth_setup.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = oauth_setup.plist; sourceTree = "<group>"; };
 		A421E8FED10173C0C9355C4F /* Pods-OAuthClientSetupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OAuthClientSetupTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OAuthClientSetupTests/Pods-OAuthClientSetupTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CFD02EB5C88022CB1B84F0EF /* Pods-OAuthClientSetup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OAuthClientSetup.release.xcconfig"; path = "Pods/Target Support Files/Pods-OAuthClientSetup/Pods-OAuthClientSetup.release.xcconfig"; sourceTree = "<group>"; };
 		DCE524CA3E320E8FE3899AD0 /* libPods-OAuthClientSetupTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OAuthClientSetupTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +138,6 @@
 				683F320A18B2D64E003641BB /* OACSAuthorizedViewController.png */,
 				683F320B18B2D64E003641BB /* OACSConnectViewController.png */,
 				683F320118B2B199003641BB /* README.md */,
-				6F10BC60214D4CAD00E4C031 /* oauth_setup.plist */,
 				683F320318B2BA71003641BB /* NOTICE */,
 				683F320518B2C250003641BB /* LICENSE */,
 				68C41A7D188A29AF006F3235 /* Gemfile */,
@@ -343,7 +340,6 @@
 				68C41A92188B7B70006F3235 /* OAuthClientSetup_iPhone.storyboard in Resources */,
 				68C41A77188A0385006F3235 /* oauth_setup_localhost.plist in Resources */,
 				68C41A9B18909BF4006F3235 /* oauth_setup_herokuapp.plist in Resources */,
-				6F10BC61214D4CAD00E4C031 /* oauth_setup.plist in Resources */,
 				687CF39F20BE26BA00AAF91F /* oauth_setup.plist in Resources */,
 				68C41A471888CEC5006F3235 /* InfoPlist.strings in Resources */,
 				683F320418B2BA71003641BB /* NOTICE in Resources */,
