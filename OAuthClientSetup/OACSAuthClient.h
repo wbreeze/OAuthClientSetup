@@ -26,7 +26,7 @@
 // After success or failure, store the results and execute the callback.
 // Operation may be called a second time, with a different authToken,
 // if callback finds wasSuccessful NO, hasHTTPStatus YES, httpStatusCode 401
-- (void)queueOpWith:(NSString*)authToken callback:(void (^)())callback;
+- (void)queueOpWith:(NSString*)authToken callback:(void (^)(void))callback;
 
 // whether the operation returned an HTTP status code
 @property (readwrite) BOOL hasHTTPStatus;
@@ -60,8 +60,8 @@
 - (AFNetworkReachabilityStatus)networkAvailable;
 - (BOOL) isAuthorized;
 - (BOOL) isConfigured;
-- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
-- (void)authorizedOp:(id<AuthOp>)op onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure;
+- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)(void))success onFailure:(void (^)(NSString *))failure;
+- (void)authorizedOp:(id<AuthOp>)op onSuccess:(void (^)(void))success onFailure:(void (^)(NSString *))failure;
 - (void)resignAuthorization;
 
 @end

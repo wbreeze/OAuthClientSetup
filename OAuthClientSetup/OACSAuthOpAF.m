@@ -50,7 +50,7 @@
 // After success or failure, store the results and execute the callback.
 // Operation may be called a second time, with a different authToken,
 // if it returns wasSuccessful NO, hasHTTPStatus YES, httpStatusCode 401
-- (void)queueOpWith:(NSString*)authToken callback:(void (^)())callback
+- (void)queueOpWith:(NSString*)authToken callback:(void (^)(void))callback
 {
     [self.httpClient setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", authToken]];
     NSURLRequest *request = [self.httpClient requestWithMethod:self.method path:self.path parameters:self.params];
