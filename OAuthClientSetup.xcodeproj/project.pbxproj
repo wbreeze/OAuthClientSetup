@@ -266,6 +266,7 @@
 				68C41A361888CEC5006F3235 /* Frameworks */,
 				68C41A371888CEC5006F3235 /* Resources */,
 				61194BD218614766A3A02EED /* Warn for TODO and FIXME comments */,
+				39B613B39FAF1CEC1C028461 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -375,6 +376,52 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39B613B39FAF1CEC1C028461 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OAuthClientSetup/Pods-OAuthClientSetup-resources.sh",
+				"${PODS_ROOT}/tuneup_js/assertions.js",
+				"${PODS_ROOT}/tuneup_js/image_assertion.js",
+				"${PODS_ROOT}/tuneup_js/lang-ext.js",
+				"${PODS_ROOT}/tuneup_js/screen.js",
+				"${PODS_ROOT}/tuneup_js/test.js",
+				"${PODS_ROOT}/tuneup_js/tuneup.js",
+				"${PODS_ROOT}/tuneup_js/uiautomation-ext.js",
+				"${PODS_ROOT}/tuneup_js/image_asserter",
+				"${PODS_ROOT}/tuneup_js/image_assertion.rb",
+				"${PODS_ROOT}/tuneup_js/test_runner/abbreviated_console_output.rb",
+				"${PODS_ROOT}/tuneup_js/test_runner/colored_console_output.rb",
+				"${PODS_ROOT}/tuneup_js/test_runner/console_output.rb",
+				"${PODS_ROOT}/tuneup_js/test_runner/preprocessor.rb",
+				"${PODS_ROOT}/tuneup_js/test_runner/run",
+				"${PODS_ROOT}/tuneup_js/test_runner/xunit_output.rb",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/assertions.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/image_assertion.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lang-ext.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/screen.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/test.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/tuneup.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/uiautomation-ext.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/image_asserter",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/image_assertion.rb",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/abbreviated_console_output.rb",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/colored_console_output.rb",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/console_output.rb",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/preprocessor.rb",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/run",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/xunit_output.rb",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OAuthClientSetup/Pods-OAuthClientSetup-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		61194BD218614766A3A02EED /* Warn for TODO and FIXME comments */ = {
