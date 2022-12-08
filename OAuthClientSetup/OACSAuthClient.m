@@ -98,7 +98,7 @@
 
 // curl -F grant_type=password -F username=user@example.com -F password=doorkeeper http://localhost:3000/oauth/token
 //{"access_token":"43fb...ffad","token_type":"bearer","expires_in":300,"refresh_token":"7ebe...743e","scope":"public"}
-- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)(void))success onFailure:(void (^)(NSString *))failure {
+- (void)authorizeUser:(NSString *)user_name password:(NSString *)password onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
     [self.oauthClient
      authenticateUsingOAuthWithPath:self.token_path
      username:user_name
@@ -123,7 +123,7 @@
      }];
 }
 
-- (void)authorizedOp:(id<AuthOp>)op onSuccess:(void (^)(void))success onFailure:(void (^)(NSString *))failure
+- (void)authorizedOp:(id<AuthOp>)op onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure
 {
     [self authorizedOp:op onSuccess:success onFailure:failure retry:YES];
 }
@@ -137,7 +137,7 @@
 #pragma mark private
 
 - (void)authorizedOp:(id<AuthOp>)op
-           onSuccess:(void (^)(void))success
+           onSuccess:(void (^)())success
            onFailure:(void (^)(NSString *))failure
                retry:(BOOL) doRetry {
     if (!self.creds) {
@@ -172,7 +172,7 @@
     }
 }
 
-- (void)refreshAndRetry:(id<AuthOp>)op onSuccess:(void (^)(void))success onFailure:(void (^)(NSString *))failure {
+- (void)refreshAndRetry:(id<AuthOp>)op onSuccess:(void (^)())success onFailure:(void (^)(NSString *))failure {
     if (self.creds.refreshToken) {
         [self.oauthClient
          authenticateUsingOAuthWithPath:self.token_path
