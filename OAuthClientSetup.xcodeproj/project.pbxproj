@@ -313,11 +313,11 @@
 			};
 			buildConfigurationList = 68C41A341888CEC5006F3235 /* Build configuration list for PBXProject "OAuthClientSetup" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 68C41A301888CEC5006F3235;
 			productRefGroup = 68C41A3A1888CEC5006F3235 /* Products */;
